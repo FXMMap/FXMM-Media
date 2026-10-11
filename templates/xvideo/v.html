@@ -1,0 +1,134 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;font-weight:400;src:url(poppins-latin-400-normal.woff2)}
+@font-face{font-family:P;font-weight:500;src:url(poppins-latin-500-normal.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(poppins-latin-600-normal.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(poppins-latin-700-normal.woff2)}
+@font-face{font-family:I;font-weight:400;src:url(inter-latin-400-normal.woff2)}
+@font-face{font-family:I;font-weight:600;src:url(inter-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(jetbrains-mono-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(jetbrains-mono-latin-700-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;background:#F4F6F9;font-family:P;color:#121821;position:relative}
+.wm{position:absolute;right:-170px;bottom:-310px;width:985px;height:714px;background:url(wmD.png) center/contain no-repeat}
+.k{position:absolute;left:132px;top:150px;font-size:20px;font-weight:600;letter-spacing:4px;color:#0060C7}
+h1{position:absolute;left:130px;top:196px;font-size:84px;line-height:1.1;font-weight:700;letter-spacing:-1.8px}
+h1 b{color:#0060C7;font-weight:700}
+.line{position:absolute;left:132px;right:132px;top:924px;height:1px;background:#E1E5EB}
+.logo{position:absolute;left:132px;top:970px;height:48px}
+.url{position:absolute;right:132px;top:978px;font-size:26px;color:#121821}
+.note{position:absolute;left:132px;top:890px;font-family:M;font-size:15px;letter-spacing:1px;color:#8A96A8}
+.ab{position:absolute}
+.card{background:#fff;border:1px solid #E1E5EB;border-radius:18px;box-shadow:0 18px 50px rgba(13,24,46,.08)}
+.mono{font-family:M}
+.lbl{font-family:M;font-weight:700;font-size:18px;letter-spacing:2px}
+.phone{width:330px;height:600px;border-radius:46px;background:#0D182E;padding:16px;box-shadow:0 30px 80px rgba(13,24,46,.25)}
+.scr{width:100%;height:100%;border-radius:38px;background:#F4F6F9;overflow:hidden;position:relative}
+.notif{position:absolute;left:12px;right:12px;top:60px;background:#fff;border-radius:22px;padding:18px 20px;box-shadow:0 10px 30px rgba(13,24,46,.15);font-family:I}
+.end{position:absolute;inset:0;background:#F4F6F9;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
+.end h2{font-size:76px;font-weight:700;letter-spacing:-1.6px;text-align:center;line-height:1.12}
+.end h2 b{color:#0060C7}
+.end p{margin-top:34px;font-size:32px;color:#3A4556}
+.end img{height:70px;margin-top:70px}
+</style></head><body>
+<div class="wm"></div>
+<div id="root"></div>
+<div class="line"></div><img class="logo" src="logoD.png"><div class="url">fxmarketmap.com</div>
+<script>
+const V=new URLSearchParams(location.search).get('v')||'A';
+const $=s=>document.querySelector(s);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const seg=(t,a,b)=>ease((t-a)/(b-a));
+function op(el,v,dy=0){el.style.opacity=v;el.style.transform=`translateY(${(1-v)*dy}px)`}
+// deterministic candles
+function candles(n,seed,start,drift){let s=seed;const r=()=>{s=(s*9301+49297)%233280;return s/233280};let p=start,a=[];
+ for(let i=0;i<n;i++){const o=p;const c=o+(r()-.5+drift)*12;const h=Math.max(o,c)+r()*5;const l=Math.min(o,c)-r()*5;a.push({o,c,h,l});p=c}return a}
+function svgCandles(a,w,h,lo,hi){const cw=w/a.length;const y=v=>h-(v-lo)/(hi-lo)*h;let g='';
+ a.forEach((k,i)=>{const x=i*cw+cw/2;const up=k.c>=k.o;const col=up?'#15875B':'#CC3A3F';
+ g+=`<g class="cd" style="opacity:0"><line x1="${x}" x2="${x}" y1="${y(k.h)}" y2="${y(k.l)}" stroke="${col}" stroke-width="2"/><rect x="${x-cw*.32}" y="${y(Math.max(k.o,k.c))}" width="${cw*.64}" height="${Math.max(2,Math.abs(y(k.o)-y(k.c)))}" fill="${col}"/></g>`});return g}
+const root=$('#root');
+const scenes={};
+
+// ---------- A: Zone found. You're notified.
+scenes.A={dur:15,html:`
+<div class="k" id="k">FXMM · HOW IT WORKS</div>
+<h1 id="t">Zone found. <b>You're notified.</b></h1>
+<div class="ab card" id="chart" style="left:132px;top:340px;width:1180px;height:530px;padding:30px">
+ <div class="lbl" style="color:#0060C7" id="zl">ZONE OF INTEREST · EUR/USD</div>
+ <svg id="sv" width="1120" height="420" style="position:absolute;left:30px;top:70px;overflow:visible">
+  <rect id="zone" x="0" y="40" width="1120" height="80" fill="rgba(0,96,199,.10)" stroke="#0060C7" stroke-width="2" style="opacity:0"/>
+  <g id="cg"></g></svg>
+</div>
+<div class="ab phone" id="ph" style="left:1420px;top:300px"><div class="scr">
+ <div class="mono" style="position:absolute;top:22px;width:100%;text-align:center;font-size:16px;color:#8A96A8">9:41</div>
+ <div class="notif" id="nt" style="opacity:0">
+  <div style="display:flex;gap:10px;align-items:center;font-size:15px;color:#8A96A8"><span style="width:26px;height:26px;border-radius:7px;background:#0D182E;display:inline-block"></span>FXMM · Telegram · now</div>
+  <div style="font-weight:600;font-size:19px;margin-top:10px;color:#121821">Zone of interest · EUR/USD</div>
+  <div style="font-size:16px;margin-top:6px;color:#3A4556;line-height:1.4">Buying interest · 1.0885 – 1.0915<br>Confluence grade: Heavy</div>
+ </div>
+ <div id="rp" style="position:absolute;inset:0;background:#fff;opacity:0;padding:54px 20px 0;font-family:I">
+  <div class="lbl" style="color:#0060C7;font-size:14px">FXMM REPORT</div>
+  <div style="font-family:P;font-weight:700;font-size:30px;margin-top:10px;line-height:1.15">EUR/USD<br><span style="color:#0060C7">Zone of interest</span></div>
+  <div class="mono" style="margin-top:16px;font-size:17px;color:#121821">1.0885 – 1.0915</div>
+  <div id="rows"></div>
+ </div>
+</div></div>
+<div class="note">ILLUSTRATIVE EXAMPLE</div>
+<div class="end" id="end"><h2>A zone appears.<br><b>You get the report.</b></h2><p>Email or Telegram · Launching November 15</p><img src="logoD.png"></div>`,
+init(){const a=candles(40,7,10830,0.1);const lo=10815,hi=10925;
+ document.getElementById('cg').innerHTML=svgCandles(a,1120,420,lo,hi);
+ const y=v=>420-(v-lo)/(hi-lo)*420;const z=$('#zone');z.setAttribute('y',y(10915));z.setAttribute('height',y(10885)-y(10915));
+ const rows=['Direction · Buying interest','Confluence grade · Heavy','Larger traders · Net long','Price arrival · Steady','Check before acting'];
+ $('#rows').innerHTML=rows.map(r=>`<div class="rw" style="opacity:0;margin-top:10px;padding:11px 14px;border:1px solid #E1E5EB;border-radius:12px;font-size:15px;color:#121821">${r}</div>`).join('')},
+R(t){op($('#k'),seg(t,.2,.9),20);op($('#t'),seg(t,.4,1.3),30);
+ op($('#chart'),seg(t,1.2,2),30);op($('#ph'),seg(t,1.5,2.3),40);
+ document.querySelectorAll('.cd').forEach((c,i)=>c.style.opacity=seg(t,2+i*.06,2.2+i*.06));
+ $('#zone').style.opacity=seg(t,4.6,5.3);$('#zl').style.opacity=seg(t,4.6,5.3);
+ const n=seg(t,6,6.6);$('#nt').style.opacity=n;$('#nt').style.transform=`translateY(${(1-n)*-40}px)`;
+ $('#rp').style.opacity=seg(t,8.4,9);
+ document.querySelectorAll('.rw').forEach((r,i)=>op(r,seg(t,9+i*.45,9.4+i*.45),14));
+ $('#end').style.opacity=seg(t,12.6,13.3)}};
+
+// ---------- B: No zone, no report.
+scenes.B={dur:15,html:`
+<div class="k" id="k">FXMM · HOW IT WORKS</div>
+<h1 id="t">No zone, <b>no report.</b></h1>
+<div id="days" class="ab" style="left:132px;top:330px;display:flex;gap:22px"></div>
+<div class="note">ILLUSTRATIVE WEEK</div>
+<div class="end" id="end"><h2>Not every pair, every day.<br><b>When there's a zone, you get the report.</b></h2><p>7 major FX pairs · Around 80 to 100 reports a month · Launching November 15</p><img src="logoD.png"></div>`,
+init(){const P=['EUR/USD','GBP/USD','USD/JPY','USD/CHF','AUD/USD','USD/CAD','NZD/USD'];
+ const D=[['MON',{0:2,1:1,2:1,5:1}],['TUE',{0:1,2:2,4:1}],['WED',{1:1,3:1,5:1,6:1}],['THU',{0:2,1:1,2:1,4:1}],['FRI',{2:1,3:1,5:2}]];
+ $('#days').innerHTML=D.map(([d,z])=>{const tot=Object.values(z).reduce((a,b)=>a+b,0);
+  return `<div class="card dy" style="width:314px;height:560px;padding:24px 22px;opacity:0;position:relative">
+  <div class="lbl" style="color:#121821">${d}</div>
+  <div style="margin-top:16px">${P.map((p,i)=>z[i]?`<div class="zp" style="opacity:0;display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;padding:10px 14px;border-radius:10px;background:rgba(0,96,199,.09);border:1.5px solid #0060C7;font-family:M;font-weight:700;font-size:18px;color:#0060C7">${p}<span style="font-family:I;font-weight:600;font-size:14px">${z[i]} ${z[i]>1?'reports':'report'}</span></div>`:`<div class="zq" style="display:flex;justify-content:space-between;margin-bottom:9px;padding:10px 14px;border-radius:10px;border:1px solid #E7EAEF;font-family:M;font-size:18px;color:#B4BCC8">${p}<span style="font-family:I;font-size:14px">no zone</span></div>`).join('')}</div>
+  <div class="cnt mono" style="position:absolute;left:22px;bottom:20px;font-size:19px;font-weight:700;color:#0060C7;opacity:0">${tot} reports</div></div>`}).join('')},
+R(t){op($('#k'),seg(t,.2,.9),20);op($('#t'),seg(t,.4,1.3),30);
+ document.querySelectorAll('.dy').forEach((d,i)=>{const a=1.5+i*1.85;op(d,seg(t,a,a+.5),30);
+  d.querySelectorAll('.zp').forEach((z,j)=>op(z,seg(t,a+.6+j*.2,a+.95+j*.2),8));op(d.querySelector('.cnt'),seg(t,a+1.3,a+1.7),0)});
+ $('#end').style.opacity=seg(t,12.4,13.1)}};
+
+// ---------- C: One zone. Full context.
+scenes.C={dur:15,html:`
+<div class="k" id="k">FXMM · THE REPORT</div>
+<h1 id="t">One zone. <b>Full context.</b></h1>
+<div class="ab card" id="rep" style="left:132px;top:360px;width:1656px;height:520px;padding:40px 46px">
+ <div style="display:flex;justify-content:space-between;align-items:baseline">
+  <div><div class="lbl" style="color:#0060C7">FXMM REPORT · GBP/USD</div>
+  <div style="font-weight:700;font-size:44px;margin-top:8px">Zone of interest <span class="mono" style="font-size:34px;color:#0060C7">1.2690 – 1.2720</span></div></div>
+  <div class="mono" style="font-size:18px;color:#8A96A8">Sent by email or Telegram</div></div>
+ <div id="sec" style="display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:40px"></div>
+</div>
+<div class="note">ILLUSTRATIVE EXAMPLE</div>
+<div class="end" id="end"><h2>Everything you need<br><b>on one page.</b></h2><p>7 major FX pairs · Launching November 15</p><img src="logoD.png"></div>`,
+init(){const S=[['01','The zone','Where it is and which way'],['02','Confluence grade','How much the data backs it'],['03','Larger traders','What big players are doing'],['04','Price arrival','How price is getting there'],['05','Before acting','What to check first']];
+ $('#sec').innerHTML=S.map(([n,a,b])=>`<div class="sc" style="opacity:0;border:1px solid #E1E5EB;border-radius:16px;padding:26px 24px;height:290px;background:#FAFBFC">
+  <div class="mono" style="font-weight:700;font-size:42px;color:#0060C7">${n}</div>
+  <div style="font-weight:700;font-size:28px;margin-top:20px;line-height:1.2">${a}</div>
+  <div style="font-family:I;font-size:19px;color:#3A4556;margin-top:12px;line-height:1.4">${b}</div></div>`).join('')},
+R(t){op($('#k'),seg(t,.2,.9),20);op($('#t'),seg(t,.4,1.3),30);op($('#rep'),seg(t,1.3,2.1),30);
+ document.querySelectorAll('.sc').forEach((s,i)=>op(s,seg(t,2.6+i*1.5,3.2+i*1.5),24));
+ $('#end').style.opacity=seg(t,12.4,13.1)}};
+
+const S=scenes[V];root.innerHTML=S.html;S.init();window.R=t=>S.R(t);window.DUR=S.dur;R(0);
+</script></body></html>

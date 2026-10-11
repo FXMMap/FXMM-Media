@@ -1,0 +1,118 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;font-weight:400;src:url(poppins-latin-400-normal.woff2)}
+@font-face{font-family:P;font-weight:500;src:url(poppins-latin-500-normal.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(poppins-latin-600-normal.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(poppins-latin-700-normal.woff2)}
+@font-face{font-family:I;font-weight:400;src:url(inter-latin-400-normal.woff2)}
+@font-face{font-family:I;font-weight:600;src:url(inter-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(jetbrains-mono-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(jetbrains-mono-latin-700-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#F4F6F9;font-family:P;color:#121821;position:relative}
+.wm{position:absolute;right:-200px;bottom:-140px;width:900px;height:652px;background:url(wmD.png) center/contain no-repeat}
+.k{position:absolute;left:90px;top:250px;font-size:24px;font-weight:600;letter-spacing:5px;color:#0060C7}
+h1{position:absolute;left:88px;right:88px;top:300px;font-size:92px;line-height:1.08;font-weight:700;letter-spacing:-2px}
+h1 b{color:#0060C7;font-weight:700}
+.line{position:absolute;left:90px;right:90px;top:1560px;height:1px;background:#E1E5EB}
+.logo{position:absolute;left:90px;top:1600px;height:52px}
+.url{position:absolute;right:90px;top:1610px;font-size:30px;color:#121821}
+.note{position:absolute;left:90px;top:1515px;font-family:M;font-size:20px;letter-spacing:1px;color:#8A96A8}
+.ab{position:absolute}
+.card{background:#fff;border:1px solid #E1E5EB;border-radius:22px;box-shadow:0 18px 50px rgba(13,24,46,.08)}
+.mono{font-family:M}
+.lbl{font-family:M;font-weight:700;font-size:22px;letter-spacing:2px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;background:rgba(0,96,199,.09);border:1.5px solid #0060C7;color:#0060C7;font-weight:600;font-size:28px;margin-right:12px}
+.end{position:absolute;inset:0;z-index:5;background:#F4F6F9;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;padding:0 90px}
+.end h2{font-size:84px;font-weight:700;letter-spacing:-1.8px;text-align:center;line-height:1.12}
+.end h2 b{color:#0060C7}
+.end p{margin-top:40px;font-size:34px;color:#3A4556;text-align:center;line-height:1.5}
+.end img{height:78px;margin-top:80px}
+.end .u{margin-top:26px;font-family:M;font-size:32px}
+</style></head><body>
+<div class="wm"></div>
+<div id="root"></div>
+<div class="line"></div><img class="logo" src="logoD.png"><div class="url">fxmarketmap.com</div>
+<script>
+const Q=new URLSearchParams(location.search);const V=Q.get('v')||'L';
+if(Q.get('th')==='n'){document.head.insertAdjacentHTML('beforeend',`<style id="nv">body{background:#0D182E;color:#EEF1F6}.wm{background-image:url(wmN.png)}.k{color:#62A5F4}h1{color:#fff}h1 b{color:#62A5F4}.line{background:#22304A}.url{color:#C9D3E3}.note{color:#7D8AA3}
+.card{background:#15213A;border-color:#22304A;box-shadow:none}.chip{background:rgba(98,165,244,.12);border-color:#62A5F4;color:#62A5F4}.end{background:#0D182E}.end h2{color:#fff}.end h2 b{color:#62A5F4}.end p{color:#B9C3D6}.end .u{color:#EEF1F6}</style>`);document.querySelectorAll('img.logo').forEach(i=>i.src='logoW.png');}
+const $=s=>document.querySelector(s);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const seg=(t,a,b)=>ease((t-a)/(b-a));
+function op(el,v,dy=0){if(!el)return;el.style.opacity=v;el.style.transform=`translateY(${(1-v)*dy}px)`}
+const root=$('#root');const scenes={};
+
+// ---------- L: Una línea no es una zona
+scenes.L={html:`
+<div class="k" id="k">FXMM · CONTEXTO</div>
+<h1 id="t">Una línea<br><b>no es una zona.</b></h1>
+<div class="ab card" id="ch" style="left:90px;top:620px;width:900px;height:760px;padding:0;overflow:hidden">
+ <svg id="sv" width="900" height="760" style="position:absolute;left:0;top:0">
+  <rect id="zone" x="0" y="560" width="900" height="90" fill="rgba(0,96,199,.10)" stroke="#0060C7" stroke-width="2" style="opacity:0"/>
+  <text id="zt" x="24" y="634" font-family="M" font-weight="700" font-size="22" letter-spacing="2" fill="#0060C7" style="opacity:0">ZONA DE INTERÉS</text>
+  <line id="ln" x1="0" x2="900" y1="330" y2="330" stroke="#8A96A8" stroke-width="3" stroke-dasharray="0" style="opacity:0"/>
+  <text id="lt" x="24" y="316" font-family="M" font-weight="700" font-size="22" letter-spacing="2" fill="#5A6270" style="opacity:0">TU LÍNEA</text>
+  <g id="cg"></g></svg>
+ <div id="pass" class="ab" style="right:30px;top:370px;font-weight:600;font-size:28px;color:#CC3A3F;opacity:0">El precio la atraviesa</div>
+</div>
+<div id="chips" class="ab" style="left:90px;top:1410px;opacity:0"><span class="chip">✓ Técnico</span><span class="chip">✓ Macro</span><span class="chip">✓ Institucional</span></div>
+<div class="note" id="nt" style="top:1525px;opacity:0">EJEMPLO ILUSTRATIVO</div>
+<div class="end" id="end"><h2>Una zona tiene ancho,<br>datos detrás<br><b>y un porqué.</b></h2><p>Zonas de interés en los 7 pares principales<br>Abrimos el 15 de noviembre</p><img src="logoD.png"><div class="u">fxmarketmap.com</div></div>`,
+init(){const path=[120,150,135,170,160,200,190,230,215,260,250,290,300,345,330,380,370,420,410,460,450,500,520,575,600,585,560,520,500,470,440,420];
+ const n=path.length-1,cw=900/(n+1);let g='';let s=3;const r=()=>{s=(s*9301+49297)%233280;return s/233280};
+ for(let i=0;i<n;i++){const o=path[i],c=path[i+1],x=(i+1)*cw,up=c<o,col=up?'#15875B':'#CC3A3F';const hi=Math.min(o,c)-8-r()*14,lo=Math.max(o,c)+8-0+r()*14;
+  g+=`<g class="cd" style="opacity:0"><line x1="${x}" x2="${x}" y1="${hi}" y2="${Math.min(lo,630)}" stroke="${col}" stroke-width="3"/><rect x="${x-cw*.32}" y="${Math.min(o,c)}" width="${cw*.64}" height="${Math.max(3,Math.abs(c-o))}" fill="${col}"/></g>`}
+ $('#cg').innerHTML=g},
+R(t){op($('#k'),seg(t,.2,.9),20);op($('#t'),seg(t,.4,1.3),30);op($('#ch'),seg(t,1.0,1.7),30);
+ op($('#ln'),seg(t,1.8,2.3));op($('#lt'),seg(t,1.9,2.4));
+ const cds=document.querySelectorAll('.cd');cds.forEach((c,i)=>{const a=i<22?2.4+i*0.16:7.2+(i-22)*0.22;c.style.opacity=seg(t,a,a+.15)});
+ op($('#pass'),seg(t,4.4,4.9),10);
+ const f=1-seg(t,5.6,6.3);$('#ln').style.opacity=Math.min(seg(t,1.8,2.3),f*0.9+0.1*(t<5.6?1:0));$('#lt').style.opacity=Math.min(seg(t,1.9,2.4),f);$('#pass').style.opacity=Math.min(seg(t,4.4,4.9),f);
+ op($('#zone'),seg(t,6.2,6.9));op($('#zt'),seg(t,6.4,7.0));
+ op($('#chips'),seg(t,8.6,9.3),20);op($('#nt'),seg(t,2,2.6));
+ $('#end').style.opacity=seg(t,12.4,13.1)}};
+
+// ---------- N: Sin zona, no hay informe
+scenes.N={html:`
+<div class="k" id="k">FXMM · CÓMO FUNCIONA</div>
+<h1 id="t">Sin zona,<br><b>no hay informe.</b></h1>
+<div id="grid" class="ab card" style="left:90px;top:550px;width:900px;padding:30px 26px;opacity:0"></div>
+<div class="note">SEMANA ILUSTRATIVA</div>
+<div class="end" id="end"><h2>No todos los pares,<br>todos los días.<br><b>Cuando hay zona,<br>te llega el informe.</b></h2><p>7 pares principales<br>Entre 80 y 100 informes al mes<br>Abrimos el 15 de noviembre</p><img src="logoD.png"></div>`,
+init(){const P=['EUR/USD','GBP/USD','USD/JPY','USD/CHF','AUD/USD','USD/CAD','NZD/USD'];const Dn=['LUN','MAR','MIÉ','JUE','VIE'];
+ const D=[{0:2,1:1,2:1,5:1},{0:1,2:2,4:1},{1:1,3:1,5:1,6:1},{0:2,1:1,2:1,4:1},{2:1,3:1,5:2}];
+ let h=`<div style="display:grid;grid-template-columns:190px repeat(5,1fr);gap:12px;align-items:center">`;
+ h+=`<div></div>`+Dn.map(d=>`<div class="lbl" style="text-align:center;color:#121821">${d}</div>`).join('');
+ P.forEach((p,i)=>{h+=`<div class="mono" style="font-weight:700;font-size:24px">${p}</div>`;
+  D.forEach((z,j)=>{h+=z[i]?`<div class="cz c${j}" style="opacity:0;height:86px;border-radius:12px;background:rgba(0,96,199,.10);border:2px solid #0060C7;display:flex;align-items:center;justify-content:center;font-family:M;font-weight:700;font-size:30px;color:#0060C7">${z[i]}</div>`:`<div class="ce c${j}" style="opacity:0;height:86px;border-radius:12px;border:1.5px dashed #D5DBE4"></div>`})});
+ h+=`<div class="lbl" style="color:#5A6270;font-size:19px">INFORMES</div>`+D.map((z,j)=>`<div class="tt t${j} mono" style="opacity:0;text-align:center;font-weight:700;font-size:34px;color:#0060C7">${Object.values(z).reduce((a,b)=>a+b,0)}</div>`).join('');
+ h+=`</div><div id="tot" style="opacity:0;margin-top:26px;padding-top:22px;border-top:1px solid #E1E5EB;display:flex;justify-content:space-between;font-weight:600;font-size:32px"><span>Esta semana</span><span style="color:#0060C7">22 informes</span></div>`;
+ $('#grid').innerHTML=h},
+R(t){op($('#k'),seg(t,.2,.9),20);op($('#t'),seg(t,.4,1.3),30);op($('#grid'),seg(t,1.2,1.9),30);
+ for(let j=0;j<5;j++){const a=2.2+j*1.6;document.querySelectorAll('.ce.c'+j).forEach(e=>e.style.opacity=seg(t,a,a+.4));
+  document.querySelectorAll('.cz.c'+j).forEach((e,k)=>op(e,seg(t,a+.2+k*.15,a+.5+k*.15),10));op($('.t'+j),seg(t,a+.9,a+1.2))}
+ op($('#tot'),seg(t,10.6,11.2),10);$('#end').style.opacity=seg(t,12.4,13.1)}};
+
+// ---------- F: Faltan 2 semanas
+scenes.F={html:`
+<div class="k" id="k">FXMM · LISTA DE ESPERA</div>
+<h1 id="t">Faltan<br><b>2 semanas.</b></h1>
+<div id="cal" class="ab card" style="left:90px;top:600px;width:900px;padding:34px 34px;opacity:0"></div>
+<div id="li" class="ab" style="left:90px;top:1210px;width:900px"></div>
+<div class="end" id="end"><h2>FXMM abre el<br><b>15 de noviembre.</b></h2><p>Súmate a la lista de espera.<br>Link en la bio.</p><img src="logoD.png"><div class="u">fxmarketmap.com</div></div>`,
+init(){let h=`<div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-weight:700;font-size:40px">Noviembre 2026</div><div class="mono" id="cd" style="font-weight:700;font-size:30px;color:#0060C7">14 días</div></div>`;
+ h+=`<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:26px">`+['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'].map(d=>`<div class="lbl" style="text-align:center;color:#8A96A8;font-size:19px">${d}</div>`).join('');
+ for(let d=1;d<=21;d++){const open=d==15,today=d==1;h+=`<div class="dd" data-d="${d}" style="height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:M;font-weight:700;font-size:28px;${open?'background:#0060C7;color:#fff':today?'border:2px solid #121821':'color:#121821'}">${d}</div>`}
+ h+=`</div><div id="op" style="opacity:0;margin-top:20px;font-weight:600;font-size:30px;color:#0060C7;text-align:right">15 de noviembre · Abrimos</div>`;$('#cal').innerHTML=h;
+ $('#li').innerHTML=['Zonas de interés en los 7 pares principales.','Con su contexto técnico, macro e institucional.','Aviso por Telegram o email.'].map(x=>`<div class="it" style="opacity:0;display:flex;gap:22px;align-items:center;font-size:32px;margin-bottom:22px"><span style="width:52px;height:52px;border-radius:50%;background:#E6EFFC;color:#0060C7;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:600;flex:none">✓</span>${x}</div>`).join('')},
+R(t){op($('#k'),seg(t,.2,.9),20);op($('#t'),seg(t,.4,1.3),30);op($('#cal'),seg(t,1.2,1.9),30);
+ const p=seg(t,2.2,5.0);document.querySelectorAll('.dd').forEach(e=>{const d=+e.dataset.d;if(d>1&&d<15)e.style.background=(d-1)/14<=p?'rgba(0,96,199,.12)':'transparent'});
+ 
+ op($('#op'),seg(t,5.0,5.6),10);
+ document.querySelectorAll('.it').forEach((e,i)=>op(e,seg(t,6.4+i*1.4,7.0+i*1.4),24));
+ $('#end').style.opacity=seg(t,12.4,13.1)}};
+
+const S=scenes[V];root.innerHTML=S.html;S.init();
+if(Q.get('th')==='n'){document.querySelectorAll('.end img').forEach(i=>i.src='logoW.png');const z=$('#zone');if(z){z.setAttribute('fill','rgba(98,165,244,.14)');z.setAttribute('stroke','#62A5F4');}const zt=$('#zt');if(zt)zt.setAttribute('fill','#62A5F4');const ln=$('#ln');if(ln)ln.setAttribute('stroke','#8A98B3');const lt=$('#lt');if(lt)lt.setAttribute('fill','#B9C3D6');}window.R=t=>S.R(t);R(0);
+</script></body></html>
