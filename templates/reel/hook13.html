@@ -1,0 +1,74 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;font-weight:400;src:url(poppins-latin-400-normal.woff2)}
+@font-face{font-family:P;font-weight:500;src:url(poppins-latin-500-normal.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(poppins-latin-600-normal.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(poppins-latin-700-normal.woff2)}
+@font-face{font-family:I;font-weight:400;src:url(inter-latin-400-normal.woff2)}
+@font-face{font-family:I;font-weight:600;src:url(inter-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(jetbrains-mono-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(jetbrains-mono-latin-700-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#F4F6F9;font-family:P;color:#121821;position:relative}
+.wm{position:absolute;right:-200px;bottom:-140px;width:900px;height:652px;background:url(wmD.png) center/contain no-repeat}
+.k{position:absolute;left:90px;top:250px;font-size:24px;font-weight:600;letter-spacing:5px;color:#0060C7}
+h1{position:absolute;left:88px;right:88px;top:300px;font-size:92px;line-height:1.08;font-weight:700;letter-spacing:-2px}
+h1 b{color:#0060C7;font-weight:700}
+.line{position:absolute;left:90px;right:90px;top:1560px;height:1px;background:#E1E5EB}
+.logo{position:absolute;left:90px;top:1600px;height:52px}
+.url{position:absolute;right:90px;top:1610px;font-size:30px;color:#121821}
+.note{position:absolute;left:90px;top:1515px;font-family:M;font-size:20px;letter-spacing:1px;color:#8A96A8}
+.ab{position:absolute}
+.card{background:#fff;border:1px solid #E1E5EB;border-radius:22px;box-shadow:0 18px 50px rgba(13,24,46,.08)}
+.mono{font-family:M}
+.lbl{font-family:M;font-weight:700;font-size:22px;letter-spacing:2px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;background:rgba(0,96,199,.09);border:1.5px solid #0060C7;color:#0060C7;font-weight:600;font-size:28px;margin-right:12px}
+.end{position:absolute;inset:0;z-index:5;background:#F4F6F9;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;padding:0 90px}
+.end h2{font-size:84px;font-weight:700;letter-spacing:-1.8px;text-align:center;line-height:1.12}
+.end h2 b{color:#0060C7}
+.end p{margin-top:40px;font-size:34px;color:#3A4556;text-align:center;line-height:1.5}
+.end img{height:78px;margin-top:80px}
+.end .u{margin-top:26px;font-family:M;font-size:32px}
+</style></head><body style="background:#0D182E;color:#EEF1F6">
+<div class="wm" style="background-image:url(wmN.png);opacity:.5"></div>
+<div id="hook" class="ab" style="left:80px;right:80px;top:250px"></div>
+<div class="ab" style="left:80px;top:640px;width:920px;height:860px">
+ <svg id="sv" width="920" height="860" style="position:absolute;left:0;top:0;overflow:visible">
+  <rect id="zone" x="0" y="640" width="920" height="110" fill="rgba(98,165,244,.16)" stroke="#62A5F4" stroke-width="3" style="opacity:0"/>
+  <text id="zt" x="20" y="730" font-family="M" font-weight="700" font-size="26" letter-spacing="3" fill="#62A5F4" style="opacity:0">ZONA DE INTERÉS</text>
+  <g id="cg"></g>
+  <g id="entry" style="opacity:0"><circle id="ec" r="16" fill="#CC3A3F"/><text id="et" font-family="M" font-weight="700" font-size="28" letter-spacing="2" fill="#FF6B70">TU ENTRADA</text></g>
+  <g id="react" style="opacity:0"><text id="rt" font-family="M" font-weight="700" font-size="28" letter-spacing="2" fill="#3FD08F">LA REACCIÓN</text></g>
+ </svg>
+</div>
+<div class="note" style="left:80px;top:1530px;color:#7D8AA3;font-family:M;font-size:22px">EJEMPLO ILUSTRATIVO</div>
+<div class="end" id="end" style="background:#0D182E"><h2 style="color:#fff">Conoce la zona.<br><b style="color:#62A5F4">Espera la reacción.</b></h2><p style="color:#B9C3D6">Zonas de interés en los 7 pares principales<br>Lista de espera abierta · Abrimos el 15/11</p><img src="logoW.png" style="height:84px;margin-top:80px"><div class="u" style="color:#EEF1F6">fxmarketmap.com</div></div>
+<script>
+const $=s=>document.querySelector(s);const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};const seg=(t,a,b)=>ease((t-a)/(b-a));
+const H=[
+ [0,2.0,'Entraste tarde.','Otra vez.'],
+ [2.0,4.5,'El precio no se persigue.','Se espera.'],
+ [4.5,6.5,'Marcamos la zona','antes de que llegue.'],
+ [6.5,8.1,'Tú solo esperas','la reacción.']];
+$('#hook').innerHTML=H.map((h,i)=>`<div class="hk" id="h${i}" style="position:absolute;left:0;right:0;top:0;opacity:0"><div style="font-weight:700;font-size:${i==0?132:104}px;line-height:1.04;letter-spacing:-3px;color:#fff">${h[2]}</div><div style="font-weight:700;font-size:${i==0?132:104}px;line-height:1.04;letter-spacing:-3px;color:#62A5F4">${h[3]}</div></div>`).join('');
+// closes in svg y (0 top .. 860 bottom)
+const C=[560,540,555,505,470,480,420,380,330,300,240,190,150, 175,230,290,360,420,480,540,600,650,690, 670,640,600,560,520,480,450,420];
+const N=C.length,cw=920/(N+1);let s=7;const r=()=>{s=(s*9301+49297)%233280;return s/233280};
+let g='';const T=[];
+for(let i=0;i<N;i++){const o=i?C[i-1]:575,c=C[i],x=(i+.8)*cw,up=c<o,col=up?'#15875B':'#CC3A3F';const hi=Math.min(o,c)-6-r()*16,lo=Math.max(o,c)+6+r()*16;
+ g+=`<g class="cd" style="opacity:0"><line x1="${x}" x2="${x}" y1="${hi}" y2="${lo}" stroke="${col}" stroke-width="4"/><rect x="${x-cw*.33}" y="${Math.min(o,c)}" width="${cw*.66}" height="${Math.max(4,Math.abs(c-o))}" fill="${col}" rx="2"/></g>`;
+ T.push(i<=12? Math.max(0,i-6)*0.2 : i<=22? 2.0+(i-13)*0.15 : 6.5+(i-23)*0.17);}
+$('#cg').innerHTML=g;
+const ex=(12+.8)*cw, ey=150;$('#ec').setAttribute('cx',ex);$('#ec').setAttribute('cy',ey);$('#et').setAttribute('x',ex-300);$('#et').setAttribute('y',ey-30);
+const rx=(N-1+.8)*cw;$('#rt').setAttribute('x',rx-300);$('#rt').setAttribute('y',C[N-1]-50);
+window.R=t=>{
+ H.forEach((h,i)=>{const e=$('#h'+i);let v=(t>=h[0]&&t<h[1])?1:0;
+   if(i>0) v=Math.min(1,cl((t-h[0])/0.18))*(t<h[1]?1:0); e.style.opacity=v;
+   e.style.transform=i==0&&t<0.25?`scale(${0.94+0.06*cl(t/0.25)})`:'none';e.style.transformOrigin='left top'});
+ document.querySelectorAll('.cd').forEach((c,i)=>c.style.opacity=t>=T[i]?1:0);
+ $('#entry').style.opacity=t>=1.2?1:0;
+ const z=seg(t,4.6,5.0);$('#zone').style.opacity=z;$('#zt').style.opacity=z;
+ $('#react').style.opacity=seg(t,6.9,7.2);
+ $('#end').style.opacity=seg(t,8.0,8.35);
+};R(0);
+</script></body></html>
