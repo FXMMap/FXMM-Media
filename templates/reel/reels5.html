@@ -1,0 +1,116 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;font-weight:400;src:url(poppins-latin-400-normal.woff2)}
+@font-face{font-family:P;font-weight:500;src:url(poppins-latin-500-normal.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(poppins-latin-600-normal.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(poppins-latin-700-normal.woff2)}
+@font-face{font-family:I;font-weight:400;src:url(inter-latin-400-normal.woff2)}
+@font-face{font-family:I;font-weight:600;src:url(inter-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(jetbrains-mono-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(jetbrains-mono-latin-700-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#F4F6F9;font-family:P;color:#121821;position:relative}
+.wm{position:absolute;right:-200px;bottom:-140px;width:900px;height:652px;background:url(wmD.png) center/contain no-repeat}
+.k{position:absolute;left:90px;top:250px;font-size:24px;font-weight:600;letter-spacing:5px;color:#0060C7}
+h1{position:absolute;left:88px;right:88px;top:300px;font-size:92px;line-height:1.08;font-weight:700;letter-spacing:-2px}
+h1 b{color:#0060C7;font-weight:700}
+.line{position:absolute;left:90px;right:90px;top:1560px;height:1px;background:#E1E5EB}
+.logo{position:absolute;left:90px;top:1600px;height:52px}
+.url{position:absolute;right:90px;top:1610px;font-size:30px;color:#121821}
+.note{position:absolute;left:90px;top:1515px;font-family:M;font-size:20px;letter-spacing:1px;color:#8A96A8}
+.ab{position:absolute}
+.card{background:#fff;border:1px solid #E1E5EB;border-radius:22px;box-shadow:0 18px 50px rgba(13,24,46,.08)}
+.mono{font-family:M}
+.lbl{font-family:M;font-weight:700;font-size:22px;letter-spacing:2px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;background:rgba(0,96,199,.09);border:1.5px solid #0060C7;color:#0060C7;font-weight:600;font-size:28px;margin-right:12px}
+.end{position:absolute;inset:0;z-index:5;background:#F4F6F9;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;padding:0 90px}
+.end h2{font-size:84px;font-weight:700;letter-spacing:-1.8px;text-align:center;line-height:1.12}
+.end h2 b{color:#0060C7}
+.end p{margin-top:40px;font-size:34px;color:#3A4556;text-align:center;line-height:1.5}
+.end img{height:78px;margin-top:80px}
+.end .u{margin-top:26px;font-family:M;font-size:32px}
+</style></head><body>
+<div class="wm" id="wm"></div>
+<div id="hook" class="ab" style="left:80px;right:80px;top:250px"></div>
+<div id="stage" class="ab" style="left:80px;top:660px;width:920px;height:620px"></div>
+<div class="note" id="note" style="left:80px;top:1290px;font-family:M;font-size:22px">ILLUSTRATIVE EXAMPLE</div>
+<div id="sub" class="ab" style="left:80px;right:80px;top:1340px;text-align:center;z-index:9"><span id="subt" style="display:inline-block;background:rgba(0,0,0,.6);color:#fff;font-family:I;font-weight:600;font-size:46px;line-height:1.3;padding:14px 26px;border-radius:14px"></span></div>
+<div class="end" id="end"><h2 id="eh"></h2><p id="ep"></p><img id="elogo" src="logoD.png" style="height:84px;margin-top:80px"><div class="u">fxmarketmap.com</div></div>
+<script>
+const Q=new URLSearchParams(location.search);const RID=Q.get('r');
+const $=s=>document.querySelector(s);const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};const seg=(t,a,b)=>ease((t-a)/(b-a));
+const NAVY={bg:'#0D182E',fg:'#fff',acc:'#62A5F4',muted:'#B9C3D6',card:'#15213A',cardb:'#22304A',line:'#8A98B3',note:'#7D8AA3',logo:'logoW.png',wm:'wmN.png'};
+const LIGHT={bg:'#F4F6F9',fg:'#121821',acc:'#0060C7',muted:'#3A4556',card:'#FFFFFF',cardb:'#E1E5EB',line:'#8A96A8',note:'#8A96A8',logo:'logoD.png',wm:'wmD.png'};
+const G='#15875B',RD='#CC3A3F';
+// candle path helper
+function candles(svgG,C,w,opts={}){const N=C.length,cw=w/(N+1);let s=opts.seed||7;const r=()=>{s=(s*9301+49297)%233280;return s/233280};let g='';
+ for(let i=0;i<N;i++){const o=i?C[i-1]:C[0]+12,c=C[i],x=(i+.8)*cw,col=c<o?G:RD;const hi=Math.min(o,c)-6-r()*14,lo=Math.max(o,c)+6+r()*14;
+  g+=`<g class="cd" style="opacity:0"><line x1="${x}" x2="${x}" y1="${hi}" y2="${lo}" stroke="${col}" stroke-width="4"/><rect x="${x-cw*.33}" y="${Math.min(o,c)}" width="${cw*.66}" height="${Math.max(4,Math.abs(c-o))}" fill="${col}" rx="2"/></g>`}
+ svgG.innerHTML=g;return cw}
+function showCandles(t,times){document.querySelectorAll('.cd').forEach((c,i)=>c.style.opacity=t>=times[i]?1:0)}
+function rows(items,th){return items.map((q,i)=>`<div class="rw" id="rw${i}" style="opacity:0;display:flex;gap:28px;align-items:center;font-weight:600;font-size:50px;line-height:1.2;color:${th.fg};margin:${i?36:0}px 0 0"><span style="flex:none;width:64px;height:64px;border-radius:50%;border:3px solid ${th.acc};color:${th.acc};display:flex;align-items:center;justify-content:center;font-size:34px">✓</span>${q}</div>`).join('')}
+function op(e,v,dy=0){if(!e)return;e.style.opacity=v;e.style.transform=`translateY(${(1-v)*dy}px)`}
+const SC={};
+// ---------- r17: levels -> reasons -> report -> launch
+SC.r17={th:NAVY,dur:15.5,end:11.0,eh:['FXMM opens','November 15.'],ep:'Zones of interest on the 7 major FX pairs<br>Join the waitlist',
+ beats:[[0,2.2,'You marked','ten levels today.','Marcaste diez niveles hoy.'],[2.2,4.3,'How many had','a reason behind them?','¿Cuántos tenían un porqué?'],[4.3,8.45,'The reasons','that matter:',null],[8.45,11.0,'That\'s the context,','in one report.','Ese es el contexto que reunimos en un informe.']],
+ subs:[[4.3,5.4,'Posicionamiento.'],[5.4,6.3,'Tasas.'],[6.3,7.35,'Volumen.'],[7.35,8.45,'Order flow.'],[11.0,13.8,'FXMM abre el 15 de noviembre.']],
+ init(th){$('#stage').innerHTML=`<svg id="sv" width="920" height="620" style="position:absolute;overflow:visible"><g id="lv"></g><g id="cg"></g></svg><div id="cardx" class="ab card" style="left:0;top:20px;width:920px;padding:48px 48px;opacity:0;background:${th.card};border-color:${th.cardb};box-shadow:none">${rows(['Positioning','Rates','Volume','Order flow'],th)}<div id="rep" style="opacity:0;margin-top:40px;padding-top:30px;border-top:1px solid ${th.cardb};font-family:M;font-weight:700;font-size:30px;letter-spacing:3px;color:${th.acc}">→ ONE CLEAR REPORT</div></div>`;
+  this.C=[420,400,430,380,350,390,340,300,330,280,250,290,240,210,250,220,180,210,190,230];candles($('#cg'),this.C,920);
+  const L=[90,140,185,230,275,320,365,410,455,500];$('#lv').innerHTML=L.map((y,i)=>`<g class="lv" style="opacity:0"><line x1="0" x2="920" y1="${y}" y2="${y}" stroke="${['#62A5F4','#F2C14E','#B48BE8','#3FD08F','#FF8A65'][i%5]}" stroke-width="3" stroke-dasharray="${i%2?'14 10':'0'}"/></g>`).join('')},
+ R(t){showCandles(t,this.C.map((_,i)=>Math.max(0,i-8)*0.05));document.querySelectorAll('.lv').forEach((e,i)=>e.style.opacity=t>=0.15+i*0.15?0.9:0);
+  $('#sv').style.opacity=1-seg(t,4.2,4.6);$('#cardx').style.opacity=seg(t,4.3,4.7);
+  [4.3,5.4,6.3,7.35].forEach((a,i)=>op($('#rw'+i),seg(t,a,a+.3),20));op($('#rep'),seg(t,8.5,8.9),10)}};
+// ---------- r18: screen time
+SC.r18={th:LIGHT,dur:14.5,end:10.55,eh:['Less screen.','More context.'],ep:'Zones of interest on the 7 major FX pairs<br>Join the waitlist · Opening November 15',
+ beats:[[0,2.15,'Ten hours','on the chart.','Diez horas frente al gráfico.'],[2.15,4.4,'Not one trade','you\'d take again.','Ni una operación que repetirías.'],[4.4,7.4,'More screen time','isn\'t more analysis.','Más pantalla no es más análisis.'],[7.4,10.55,'Know where to look.','And why.','El trabajo es saber dónde mirar, y por qué.']],
+ subs:[[10.55,13.2,'Menos pantalla. Más contexto.']],
+ init(th){$('#stage').innerHTML=`<div class="ab card" style="left:0;top:0;width:920px;height:600px;padding:0;overflow:hidden;background:${th.card};border-color:${th.cardb}"><div style="position:absolute;left:36px;top:26px;font-family:M;font-weight:700;font-size:26px;letter-spacing:3px;color:${th.acc}">ON SCREEN</div><div id="clk" style="position:absolute;right:36px;top:12px;font-family:M;font-weight:700;font-size:64px;color:${th.fg}">08:00</div><svg width="920" height="600" style="position:absolute;left:0;top:0"><g id="lv"></g><rect id="zn" x="0" y="440" width="920" height="80" fill="rgba(0,96,199,.12)" stroke="${th.acc}" stroke-width="3" style="opacity:0"/><text id="zt" x="24" y="492" font-family="M" font-weight="700" font-size="24" letter-spacing="3" fill="${th.acc}" style="opacity:0">WHERE TO LOOK</text><g id="cg" transform="translate(0,20)"></g></svg></div>`;
+  this.C=[300,320,290,330,280,310,350,300,270,320,360,330,300,340,290,320,350,310,280,330,300,320];candles($('#cg'),this.C,920,{seed:3});
+  const L=[150,190,240,270,330,380,420,460,500,530,560];$('#lv').innerHTML=L.map((y,i)=>`<line class="lv" x1="0" x2="920" y1="${y}" y2="${y}" stroke="#8A96A8" stroke-width="2" stroke-dasharray="10 8" style="opacity:0"/>`).join('')},
+ R(t){const h=8+Math.min(10,t/2.0*10);const hh=Math.floor(h),mm=Math.floor((h-hh)*60/15)*15;$('#clk').textContent=`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
+  showCandles(t,this.C.map((_,i)=>Math.max(0,i-5)*0.1));const f=1-seg(t,7.4,8.0);document.querySelectorAll('.lv').forEach((e,i)=>e.style.opacity=(t>=2.2+i*0.18?0.8:0)*f);
+  op($('#zn'),seg(t,7.6,8.1));op($('#zt'),seg(t,7.8,8.2))}};
+// ---------- r22: a line isn't a zone
+SC.r22={th:NAVY,dur:14.0,end:10.65,eh:['A line','isn\'t a zone.'],ep:'Zones of interest on the 7 major FX pairs<br>Join the waitlist · Opening November 15',
+ beats:[[0,2.4,'Why did price','cut through your line?','¿Por qué el precio atravesó tu línea?'],[2.4,4.7,'A line has','no data behind it.','Una línea no tiene datos detrás.'],[4.7,7.9,'A zone of interest','has width.','Una zona de interés tiene ancho,'],[7.9,10.65,'And context','behind it.','y contexto: posicionamiento, tasas, volumen.']],
+ subs:[[10.65,12.6,'Una línea no es una zona.']],
+ init(th){$('#stage').innerHTML=`<svg width="920" height="620" style="position:absolute;overflow:visible"><rect id="zn" x="0" y="430" width="920" height="110" fill="rgba(98,165,244,.16)" stroke="#62A5F4" stroke-width="3" style="opacity:0"/><text id="zt" x="24" y="520" font-family="M" font-weight="700" font-size="26" letter-spacing="3" fill="#62A5F4" style="opacity:0">ZONE OF INTEREST</text><line id="ln" x1="0" x2="920" y1="250" y2="250" stroke="#B9C3D6" stroke-width="3"/><text id="lt" x="24" y="236" font-family="M" font-weight="700" font-size="26" letter-spacing="3" fill="#B9C3D6">YOUR LINE</text><g id="cg"></g></svg><div id="chips" class="ab" style="left:0;top:560px;display:flex;gap:16px;opacity:0"></div>`;
+  $('#chips').innerHTML=['Positioning','Rates','Volume'].map((c,i)=>`<span class="chp" style="opacity:0;padding:14px 22px;border-radius:12px;background:rgba(98,165,244,.12);border:1.5px solid #62A5F4;color:#62A5F4;font-weight:600;font-size:34px">✓ ${c}</span>`).join('');
+  this.C=[380,360,370,330,345,300,315,280,290,262,270,200,160,175,130,110];candles($('#cg'),this.C,600);},
+ R(t){showCandles(t,this.C.map((_,i)=>Math.max(0,i-7)*0.2));const f=1-0.65*seg(t,2.5,3.2);$('#ln').style.opacity=f;$('#lt').style.opacity=f;
+  op($('#zn'),seg(t,4.8,5.3));op($('#zt'),seg(t,5.0,5.4));$('#chips').style.opacity=t>=7.9?1:0;document.querySelectorAll('.chp').forEach((e,i)=>op(e,seg(t,8.0+i*0.55,8.3+i*0.55),14))}};
+// ---------- r28: seven pairs grid
+SC.r28={th:LIGHT,dur:15.0,end:11.75,eh:['No zone,','no report.'],ep:'Zones of interest on the 7 major FX pairs<br>By email or Telegram · Opening November 15',
+ beats:[[0,2.4,'Seven major','FX pairs.','Los 7 pares principales de FX.'],[2.4,4.45,'Watched every','trading day.','Seguidos cada día hábil.'],[4.45,7.7,'When the data lines up,','you get a report.','Cuando los datos coinciden en una zona, te llega un informe.'],[7.7,9.9,'Usually one or two','pairs a day.','Lo normal: uno o dos pares por día.'],[9.9,11.75,'By email','or Telegram.','Por email o Telegram.']],
+ subs:[[11.75,13.6,'Sin zona, no hay informe.']],
+ init(th){const P=['EUR/USD','GBP/USD','USD/JPY','USD/CHF','AUD/USD','USD/CAD','NZD/USD'],D=['MON','TUE','WED','THU','FRI'];
+  const Z=[{0:1,2:1},{1:1,4:1},{0:1,3:1,5:1},{2:1,6:1},{1:1,5:1}];
+  let h=`<div style="display:grid;grid-template-columns:200px repeat(5,1fr);gap:12px;align-items:center">`;h+=`<div></div>`+D.map((d,j)=>`<div class="dh" data-j="${j}" style="opacity:0;text-align:center;font-family:M;font-weight:700;font-size:24px;letter-spacing:2px;color:${th.fg}">${d}</div>`).join('');
+  P.forEach((p,i)=>{h+=`<div class="pr" style="opacity:0;font-family:M;font-weight:700;font-size:26px;color:${th.fg}">${p}</div>`;D.forEach((d,j)=>{h+=Z[j][i]?`<div class="cz" data-j="${j}" style="opacity:0;height:56px;border-radius:10px;background:rgba(0,96,199,.12);border:2px solid ${th.acc};display:flex;align-items:center;justify-content:center;font-family:M;font-weight:700;font-size:22px;color:${th.acc}">ZONE</div>`:`<div class="ce" data-j="${j}" style="opacity:0;height:56px;border-radius:10px;border:1.5px dashed #D5DBE4"></div>`})});
+  h+=`</div>`;$('#stage').innerHTML=`<div class="ab card" style="left:0;top:0;width:920px;padding:30px 26px;background:${th.card};border-color:${th.cardb}">${h}</div><div id="ntf" class="ab card" style="left:120px;top:430px;width:680px;padding:26px 30px;opacity:0;box-shadow:0 24px 60px rgba(13,24,46,.22);border-color:${th.acc}"><div style="font-family:M;font-weight:700;font-size:22px;letter-spacing:2px;color:${th.acc}">FXMM · NEW REPORT</div><div style="margin-top:10px;font-weight:600;font-size:38px;color:${th.fg}">Zone of interest · EUR/USD</div><div style="margin-top:6px;font-size:28px;color:#5A6270">Email · Telegram</div></div>`},
+ R(t){document.querySelectorAll('.pr').forEach((e,i)=>op(e,seg(t,i*0.12,i*0.12+0.25),10));document.querySelectorAll('.dh').forEach(e=>{const j=+e.dataset.j;op(e,seg(t,2.45+j*0.3,2.75+j*0.3))});
+  document.querySelectorAll('.ce').forEach(e=>{const j=+e.dataset.j;e.style.opacity=seg(t,2.6+j*0.3,2.9+j*0.3)});
+  document.querySelectorAll('.cz').forEach(e=>{const j=+e.dataset.j;op(e,seg(t,4.6+j*0.55,4.9+j*0.55),8)});op($('#ntf'),seg(t,9.95,10.35),30)}};
+// ---------- r01: countdown
+SC.r01={th:LIGHT,dur:13.5,end:10.5,eh:['Join the','waitlist.'],ep:'FXMM opens November 15<br>Zones of interest on the 7 major FX pairs',
+ beats:[[0,1.65,'14','days.','Catorce días.'],[1.65,5.2,'On November 15,','FXMM opens.','El 15 de noviembre abre FXMM.'],[5.2,10.5,'Zones of interest,','with the context behind them.',null]],
+ subs:[[5.2,8.55,'Zonas de interés en los 7 pares principales,'],[8.55,10.45,'con el contexto detrás.'],[10.5,12.3,'Súmate a la lista de espera.']],
+ big0:true,
+ init(th){let h=`<div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-weight:700;font-size:44px;color:${th.fg}">November 2026</div><div class="mono" id="cd" style="font-family:M;font-weight:700;font-size:34px;color:${th.acc}">14 days</div></div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:26px">`+['SUN','MON','TUE','WED','THU','FRI','SAT'].map(d=>`<div style="text-align:center;font-family:M;font-weight:700;font-size:20px;color:#8A96A8">${d}</div>`).join('');
+  for(let d=1;d<=21;d++){const open=d==15,today=d==1;h+=`<div class="dd" data-d="${d}" style="height:76px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:M;font-weight:700;font-size:30px;${open?'background:#0060C7;color:#fff':today?'border:2px solid #121821;color:#121821':'color:#121821'}">${d}</div>`}
+  h+=`</div>`;$('#stage').innerHTML=`<div id="cal" class="ab card" style="left:0;top:0;width:920px;padding:34px 34px;background:${th.card};border-color:${th.cardb}">${h}</div><div id="lst" class="ab card" style="left:0;top:20px;width:920px;padding:48px;opacity:0;background:${th.card};border-color:${th.cardb}">${rows(['7 major FX pairs','Positioning, rates, volume, order flow','By email or Telegram'],th)}</div>`},
+ R(t){const p=seg(t,0.2,2.0);document.querySelectorAll('.dd').forEach(e=>{const d=+e.dataset.d;if(d>1&&d<15)e.style.background=(d-1)/14<=p?'rgba(0,96,199,.12)':'transparent'});
+  $('#cal').style.opacity=1-seg(t,5.1,5.5);$('#lst').style.opacity=seg(t,5.2,5.6);[5.3,7.2,8.7].forEach((a,i)=>op($('#rw'+i),seg(t,a,a+.3),20))}};
+// ---------- engine
+const S=SC[RID],th=S.th;document.body.style.background=th.bg;document.body.style.color=th.fg;$('#wm').style.backgroundImage=`url(${th.wm})`;$('#wm').style.opacity=.5;$('#note').style.color=th.note;
+$('#end').style.background=th.bg;$('#eh').innerHTML=`<span style="color:${th.fg}">${S.eh[0]}</span><br><b style="color:${th.acc}">${S.eh[1]}</b>`;$('#ep').innerHTML=S.ep;$('#ep').style.color=th.muted;$('#elogo').src=th.logo;$('.end .u').style.color=th.fg;
+$('#hook').innerHTML=S.beats.map((b,i)=>`<div id="h${i}" style="position:absolute;left:0;right:0;top:0;opacity:0"><div style="font-weight:700;font-size:${(i==0&&S.big0)?200:108}px;line-height:1.05;letter-spacing:-3px;color:${th.fg}">${b[2]}</div><div style="font-weight:700;font-size:${i==0?108:104}px;line-height:1.05;letter-spacing:-3px;color:${th.acc}">${b[3]}</div></div>`).join('');
+S.init(th);
+const SUBS=S.beats.filter(b=>b[4]).map(b=>[b[0],b[1],b[4]]).concat(S.subs);
+window.R=t=>{S.beats.forEach((b,i)=>{let v=i==0?(t<b[1]?1:0):Math.min(1,cl((t-b[0])/0.18))*(t<b[1]?1:0);$('#h'+i).style.opacity=v});
+ $('#h0').style.transform=t<0.25?`scale(${0.94+0.06*cl(t/0.25)})`:'none';$('#h0').style.transformOrigin='left top';
+ S.R(t);const cur=SUBS.find(x=>t>=x[0]&&t<x[1]);$('#subt').textContent=cur?cur[2]:'';$('#sub').style.opacity=cur?1:0;
+ $('#end').style.opacity=seg(t,S.end,S.end+0.35)};
+R(0);
+</script></body></html>
