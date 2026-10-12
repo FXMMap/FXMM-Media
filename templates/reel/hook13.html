@@ -36,7 +36,7 @@ h1 b{color:#0060C7;font-weight:700}
   <rect id="zone" x="0" y="640" width="920" height="110" fill="rgba(98,165,244,.16)" stroke="#62A5F4" stroke-width="3" style="opacity:0"/>
   <text id="zt" x="20" y="730" font-family="M" font-weight="700" font-size="26" letter-spacing="3" fill="#62A5F4" style="opacity:0">ZONA DE INTERÉS</text>
   <g id="cg"></g>
-  <g id="entry" style="opacity:0"><circle id="ec" r="16" fill="#CC3A3F"/><text id="et" font-family="M" font-weight="700" font-size="28" letter-spacing="2" fill="#FF6B70">TU ENTRADA</text></g>
+  <g id="entry" style="opacity:0"><line id="el" stroke="#B9C3D6" stroke-width="3" stroke-dasharray="12 10"/><polygon id="ep" fill="#3FD08F"/><text id="et" font-family="M" font-weight="700" font-size="28" letter-spacing="2" fill="#3FD08F">COMPRASTE AQUÍ</text></g>
   <g id="react" style="opacity:0"><text id="rt" font-family="M" font-weight="700" font-size="28" letter-spacing="2" fill="#3FD08F">LA REACCIÓN</text></g>
  </svg>
 </div>
@@ -59,7 +59,7 @@ for(let i=0;i<N;i++){const o=i?C[i-1]:575,c=C[i],x=(i+.8)*cw,up=c<o,col=up?'#158
  g+=`<g class="cd" style="opacity:0"><line x1="${x}" x2="${x}" y1="${hi}" y2="${lo}" stroke="${col}" stroke-width="4"/><rect x="${x-cw*.33}" y="${Math.min(o,c)}" width="${cw*.66}" height="${Math.max(4,Math.abs(c-o))}" fill="${col}" rx="2"/></g>`;
  T.push(i<=12? Math.max(0,i-6)*0.2 : i<=22? 2.0+(i-13)*0.15 : 6.5+(i-23)*0.17);}
 $('#cg').innerHTML=g;
-const ex=(12+.8)*cw, ey=150;$('#ec').setAttribute('cx',ex);$('#ec').setAttribute('cy',ey);$('#et').setAttribute('x',ex-300);$('#et').setAttribute('y',ey-30);
+const ex=(12+.8)*cw, ey=150;$('#el').setAttribute('x1',ex);$('#el').setAttribute('x2',920);$('#el').setAttribute('y1',ey);$('#el').setAttribute('y2',ey);$('#ep').setAttribute('points',`${ex-26},${ey} ${ex-58},${ey-20} ${ex-58},${ey+20}`);$('#et').setAttribute('x',ex-330);$('#et').setAttribute('y',ey-36);
 const rx=(N-1+.8)*cw;$('#rt').setAttribute('x',rx-300);$('#rt').setAttribute('y',C[N-1]-50);
 window.R=t=>{
  H.forEach((h,i)=>{const e=$('#h'+i);let v=(t>=h[0]&&t<h[1])?1:0;
