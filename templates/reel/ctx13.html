@@ -31,44 +31,38 @@ h1 b{color:#0060C7;font-weight:700}
 </style></head><body style="background:#0D182E;color:#EEF1F6">
 <div class="wm" style="background-image:url(wmN.png);opacity:.5"></div>
 <div id="hook" class="ab" style="left:80px;right:80px;top:250px"></div>
-<div class="ab" style="left:80px;top:640px;width:920px;height:860px">
- <svg id="sv" width="920" height="860" style="position:absolute;left:0;top:0;overflow:visible">
-  <rect id="zone" x="0" y="640" width="920" height="110" fill="rgba(98,165,244,.16)" stroke="#62A5F4" stroke-width="3" style="opacity:0"/>
-  <text id="zt" x="20" y="730" font-family="M" font-weight="700" font-size="26" letter-spacing="3" fill="#62A5F4" style="opacity:0">ZONA DE INTERÉS</text>
+<div id="chart" class="ab" style="left:80px;top:700px;width:920px;height:760px">
+ <svg width="920" height="760" style="position:absolute;left:0;top:0;overflow:visible">
   <g id="cg"></g>
   <g id="entry" style="opacity:0"><line id="el" stroke="#B9C3D6" stroke-width="3" stroke-dasharray="12 10"/><polygon id="ep" fill="#3FD08F"/><text id="et" font-family="M" font-weight="700" font-size="28" letter-spacing="2" fill="#3FD08F">COMPRASTE AQUÍ</text></g>
-  <g id="react" style="opacity:0"><text id="rt" font-family="M" font-weight="700" font-size="28" letter-spacing="2" fill="#3FD08F">LA REACCIÓN</text></g>
  </svg>
 </div>
+<div id="qs" class="ab card" style="left:80px;top:760px;width:920px;padding:44px 44px;opacity:0;background:#15213A;border-color:#22304A;box-shadow:none"></div>
 <div class="note" style="left:80px;top:1530px;color:#7D8AA3;font-family:M;font-size:22px">EJEMPLO ILUSTRATIVO</div>
-<div class="end" id="end" style="background:#0D182E"><h2 style="color:#fff">Conoce la zona.<br><b style="color:#62A5F4">Espera la reacción.</b></h2><p style="color:#B9C3D6">Zonas de interés en los 7 pares principales<br>Lista de espera abierta · Abrimos el 15/11</p><img src="logoW.png" style="height:84px;margin-top:80px"><div class="u" style="color:#EEF1F6">fxmarketmap.com</div></div>
+<div class="end" id="end" style="background:#0D182E"><h2 style="color:#fff">Contexto<br><b style="color:#62A5F4">antes de entrar.</b></h2><p style="color:#B9C3D6">Zonas de interés en los 7 pares principales<br>Lista de espera abierta · Abrimos el 15/11</p><img src="logoW.png" style="height:84px;margin-top:80px"><div class="u" style="color:#EEF1F6">fxmarketmap.com</div></div>
 <script>
 const $=s=>document.querySelector(s);const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};const seg=(t,a,b)=>ease((t-a)/(b-a));
-const H=[
- [0,2.0,'Entraste tarde.','Otra vez.'],
- [2.0,4.5,'El precio no se persigue.','Se espera.'],
- [4.4,6.75,'Marcamos la zona','antes de que llegue.'],
- [6.75,8.45,'Tú solo esperas','la reacción.']];
-$('#hook').innerHTML=H.map((h,i)=>`<div class="hk" id="h${i}" style="position:absolute;left:0;right:0;top:0;opacity:0"><div style="font-weight:700;font-size:${i==0?132:104}px;line-height:1.04;letter-spacing:-3px;color:#fff">${h[2]}</div><div style="font-weight:700;font-size:${i==0?132:104}px;line-height:1.04;letter-spacing:-3px;color:#62A5F4">${h[3]}</div></div>`).join('');
-// closes in svg y (0 top .. 860 bottom)
-const C=[560,540,555,505,470,480,420,380,330,300,240,190,150, 175,230,290,360,420,480,540,600,650,690, 670,640,600,560,520,480,450,420];
-const N=C.length,cw=920/(N+1);let s=7;const r=()=>{s=(s*9301+49297)%233280;return s/233280};
-let g='';const T=[];
-for(let i=0;i<N;i++){const o=i?C[i-1]:575,c=C[i],x=(i+.8)*cw,up=c<o,col=up?'#15875B':'#CC3A3F';const hi=Math.min(o,c)-6-r()*16,lo=Math.max(o,c)+6+r()*16;
+const TM={h1:1.95,h2:5.15,q:[5.25,6.75,9.15],end:10.75};
+const H=[[0,TM.h1,'Entraste tarde.','Otra vez.',132],[TM.h1,TM.h2,'No fue mala suerte.','Fue entrar sin contexto.',100],[TM.h2,TM.end,'Antes de entrar,','pregúntate:',104]];
+$('#hook').innerHTML=H.map((h,i)=>`<div id="h${i}" style="position:absolute;left:0;right:0;top:0;opacity:0"><div style="font-weight:700;font-size:${h[4]}px;line-height:1.05;letter-spacing:-3px;color:#fff">${h[2]}</div><div style="font-weight:700;font-size:${h[4]}px;line-height:1.05;letter-spacing:-3px;color:#62A5F4">${h[3]}</div></div>`).join('');
+const Q=['¿Por qué este nivel?','¿Cómo están posicionados los grandes?','¿Hay volumen real ahí?'];
+$('#qs').innerHTML=Q.map((q,i)=>`<div class="q" id="q${i}" style="opacity:0;display:flex;gap:28px;align-items:center;font-weight:600;font-size:46px;line-height:1.2;color:#fff;margin:${i?42:0}px 0 0"><span style="flex:none;width:64px;height:64px;border-radius:50%;border:3px solid #62A5F4;color:#62A5F4;display:flex;align-items:center;justify-content:center;font-family:M;font-size:30px">${i+1}</span>${q}</div>`).join('');
+const C=[520,505,515,470,440,450,395,355,310,280,225,180,140, 165,215,270,330,380,430,470,500,540,560];
+const N=C.length,cw=920/(N+1);let s=7;const r=()=>{s=(s*9301+49297)%233280;return s/233280};let g='';const T=[];
+for(let i=0;i<N;i++){const o=i?C[i-1]:535,c=C[i],x=(i+.8)*cw,up=c<o,col=up?'#15875B':'#CC3A3F';const hi=Math.min(o,c)-6-r()*16,lo=Math.max(o,c)+6+r()*16;
  g+=`<g class="cd" style="opacity:0"><line x1="${x}" x2="${x}" y1="${hi}" y2="${lo}" stroke="${col}" stroke-width="4"/><rect x="${x-cw*.33}" y="${Math.min(o,c)}" width="${cw*.66}" height="${Math.max(4,Math.abs(c-o))}" fill="${col}" rx="2"/></g>`;
- T.push(i<=12? Math.max(0,i-6)*0.2 : i<=22? 2.0+(i-13)*0.15 : 6.75+(i-23)*0.17);}
+ T.push(i<=12? Math.max(0,i-6)*0.2 : TM.h1+(i-13)*0.2);}
 $('#cg').innerHTML=g;
-const ex=(12+.8)*cw, ey=150;$('#el').setAttribute('x1',ex);$('#el').setAttribute('x2',920);$('#el').setAttribute('y1',ey);$('#el').setAttribute('y2',ey);$('#ep').setAttribute('points',`${ex-26},${ey} ${ex-58},${ey-20} ${ex-58},${ey+20}`);$('#et').setAttribute('x',ex-330);$('#et').setAttribute('y',ey-36);
-const rx=(N-1+.8)*cw;$('#rt').setAttribute('x',rx-300);$('#rt').setAttribute('y',C[N-1]-50);
+const ex=(12+.8)*cw, ey=140;$('#el').setAttribute('x1',ex);$('#el').setAttribute('x2',920);$('#el').setAttribute('y1',ey);$('#el').setAttribute('y2',ey);$('#ep').setAttribute('points',`${ex-26},${ey} ${ex-58},${ey-20} ${ex-58},${ey+20}`);$('#et').setAttribute('x',ex-330);$('#et').setAttribute('y',ey-36);
 window.R=t=>{
- H.forEach((h,i)=>{const e=$('#h'+i);let v=(t>=h[0]&&t<h[1])?1:0;
-   if(i>0) v=Math.min(1,cl((t-h[0])/0.18))*(t<h[1]?1:0); e.style.opacity=v;
-   e.style.transform=i==0&&t<0.25?`scale(${0.94+0.06*cl(t/0.25)})`:'none';e.style.transformOrigin='left top'});
+ H.forEach((h,i)=>{let v=i==0?(t<h[1]?1:0):Math.min(1,cl((t-h[0])/0.18))*(t<h[1]?1:0);$('#h'+i).style.opacity=v;});
+ $('#h0').style.transform=t<0.25?`scale(${0.94+0.06*cl(t/0.25)})`:'none';$('#h0').style.transformOrigin='left top';
  document.querySelectorAll('.cd').forEach((c,i)=>c.style.opacity=t>=T[i]?1:0);
  $('#entry').style.opacity=t>=1.2?1:0;
- const z=seg(t,4.6,5.0);$('#zone').style.opacity=z;$('#zt').style.opacity=z;
- $('#react').style.opacity=seg(t,7.1,7.4);
- $('#end').style.opacity=seg(t,8.4,8.75);
+ $('#chart').style.opacity=1-seg(t,TM.h2,TM.h2+0.35);
+ $('#qs').style.opacity=seg(t,TM.h2+0.15,TM.h2+0.5);
+ TM.q.forEach((a,i)=>{const e=$('#q'+i);e.style.opacity=seg(t,a,a+0.3);e.style.transform=`translateY(${(1-seg(t,a,a+0.3))*20}px)`});
+ $('#end').style.opacity=seg(t,TM.end,TM.end+0.35);
 };R(0);
 </script></body></html>
