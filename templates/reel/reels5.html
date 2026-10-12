@@ -92,6 +92,28 @@ SC.r28={th:LIGHT,dur:15.0,end:11.75,eh:['No zone,','no report.'],ep:'Zones of in
  R(t){document.querySelectorAll('.pr').forEach((e,i)=>op(e,seg(t,i*0.12,i*0.12+0.25),10));document.querySelectorAll('.dh').forEach(e=>{const j=+e.dataset.j;op(e,seg(t,2.45+j*0.3,2.75+j*0.3))});
   document.querySelectorAll('.ce').forEach(e=>{const j=+e.dataset.j;e.style.opacity=seg(t,2.6+j*0.3,2.9+j*0.3)});
   document.querySelectorAll('.cz').forEach(e=>{const j=+e.dataset.j;op(e,seg(t,4.6+j*0.55,4.9+j*0.55),8)});op($('#ntf'),seg(t,9.95,10.35),30)}};
+// ---------- r28b: seven pairs grid + distance to the zone (25-30 pips)
+SC.r28b={th:LIGHT,dur:22.0,end:19.2,eh:['No zone,','no report.'],ep:'Zones of interest on the 7 major FX pairs<br>By email or Telegram · Opening November 15',
+ beats:[[0,2.6,'Seven major','FX pairs.','Los 7 pares principales de FX.'],[2.6,4.75,'Watched every','trading day.','Seguidos cada día hábil.'],[4.75,8.0,'When the data lines up,','you get a report.','Cuando los datos coinciden en una zona, te llega un informe.'],[8.0,10.35,'Most days,','one or two pairs.','La mayoría de los días, uno o dos pares.'],[10.35,15.25,'When it goes out,','price is usually 25–30 pips away.','Cuando sale, la zona suele estar a unos 25 a 30 pips del precio.'],[15.25,17.1,'Time to read','the context.','Tiempo para leer el contexto.'],[17.1,19.2,'By email','or Telegram.','Por email o Telegram.']],
+ subs:[[19.2,21.4,'Sin zona, no hay informe.']],
+ init(th){SC.r28.init.call(this,th);
+  const ch=`<div id="chp" class="ab card" style="left:0;top:0;width:920px;height:600px;padding:0;overflow:hidden;opacity:0;background:${th.card};border-color:${th.cardb}"><svg width="920" height="600" style="position:absolute;left:0;top:0">
+<rect x="0" y="430" width="920" height="80" fill="rgba(0,96,199,.12)" stroke="${th.acc}" stroke-width="3"/><text x="24" y="482" font-family="M" font-weight="700" font-size="24" letter-spacing="3" fill="${th.acc}">ZONE OF INTEREST</text>
+<g id="cg2"></g><line id="pl" x1="582" x2="920" y1="300" y2="300" stroke="#5A6270" stroke-width="2.5" stroke-dasharray="10 8" style="opacity:0"/>
+<text id="plt" x="600" y="280" font-family="M" font-weight="700" font-size="22" letter-spacing="2" fill="#5A6270" style="opacity:0">PRICE AT REPORT</text>
+<g id="br" style="opacity:0"><line x1="680" x2="680" y1="306" y2="426" stroke="${th.fg}" stroke-width="3"/><line x1="668" x2="692" y1="306" y2="306" stroke="${th.fg}" stroke-width="3"/><line x1="668" x2="692" y1="426" y2="426" stroke="${th.fg}" stroke-width="3"/>
+<text x="708" y="380" font-family="P" font-weight="700" font-size="46" fill="${th.fg}">≈ 28 pips</text></g></svg></div>`;
+  $('#stage').insertAdjacentHTML('beforeend',ch);
+  this.C2=[110,128,120,150,142,170,188,176,205,222,214,240,258,250,278,300];
+  const g=$('#cg2');candles(g,this.C2,620,{seed:5});g.querySelectorAll('.cd').forEach(e=>e.classList.replace('cd','cd2'));
+  const n=$('#ntf');n.style.top='150px';$('#stage').appendChild(n)},
+ R(t){const grid=$('#stage').firstElementChild;grid.style.opacity=1-seg(t,10.3,10.7);
+  document.querySelectorAll('.pr').forEach((e,i)=>op(e,seg(t,i*0.12,i*0.12+0.25),10));document.querySelectorAll('.dh').forEach(e=>{const j=+e.dataset.j;op(e,seg(t,2.65+j*0.3,2.95+j*0.3))});
+  document.querySelectorAll('.ce').forEach(e=>{const j=+e.dataset.j;e.style.opacity=seg(t,2.8+j*0.3,3.1+j*0.3)});
+  document.querySelectorAll('.cz').forEach(e=>{const j=+e.dataset.j;op(e,seg(t,4.9+j*0.55,5.2+j*0.55),8)});
+  $('#chp').style.opacity=seg(t,10.4,10.8);document.querySelectorAll('.cd2').forEach((e,i)=>e.style.opacity=t>=10.6+i*0.07?1:0);
+  op($('#pl'),seg(t,11.8,12.2));op($('#plt'),seg(t,11.9,12.3));op($('#br'),seg(t,12.4,12.9));
+  op($('#ntf'),seg(t,17.2,17.6),30)}};
 // ---------- r01: countdown
 SC.r01={th:LIGHT,dur:13.5,end:10.5,eh:['Join the','waitlist.'],ep:'FXMM opens November 15<br>Zones of interest on the 7 major FX pairs',
  beats:[[0,1.65,'14','days.','Catorce días.'],[1.65,5.2,'On November 15,','FXMM opens.','El 15 de noviembre abre FXMM.'],[5.2,10.5,'Zones of interest,','with the context behind them.',null]],
