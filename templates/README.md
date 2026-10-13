@@ -30,6 +30,10 @@ Requisitos: Python 3 con Playwright (Chromium) y Pillow; ffmpeg para videos. Cad
 ## substack_mock/ · Mockup de un artículo como se ve en Substack
 - `build.py` (texto en HTML o Markdown + portada).
 
+## Nombre del newsletter
+- "The Market Map" va SIEMPRE en Lora cursiva (semibold), en blanco sobre navy o navy sobre claro. Oficial desde el 13 oct 2026. "by FXMM" puede acompañar en Poppins.
+- Encabezado de Substack: `../substack_header/FXMM_Substack_header.png` (2688x512, solo el nombre, sin logo).
+
 ## fonts/ y brand/
 - Poppins, JetBrains Mono, Inter, Lora. Kit de marca en `../brand/`.
 

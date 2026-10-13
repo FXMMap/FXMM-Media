@@ -3,16 +3,16 @@ from playwright.async_api import async_playwright
 D=os.path.dirname(os.path.abspath(__file__))
 ITEMS=[('a04_cover.jpg','Why Price Reacts Where Volume Has Traded','FRIDAY · OCT 23','50% 50%','sub_oct23.jpg'),
        ('a05_cover.jpg','Patience Isn\'t a Personality Trait. It\'s a Plan.','TUESDAY · OCT 27','38% 50%','sub_oct27.jpg')]
-CSS='''@font-face{font-family:P;src:url(%s/poppins-latin-500-normal.woff2)}@font-face{font-family:P6;src:url(%s/poppins-latin-600-normal.woff2)}
+CSS='''@font-face{font-family:L;font-style:italic;src:url(%s/../fonts/Lora-Italic-Variable.ttf)}@font-face{font-family:P;src:url(%s/poppins-latin-500-normal.woff2)}@font-face{font-family:P6;src:url(%s/poppins-latin-600-normal.woff2)}
 *{margin:0;box-sizing:border-box}body{width:1080px;height:1350px;background:#0D182E;overflow:hidden;position:relative}
 .ph{position:absolute;top:0;left:0;width:1080px;height:780px;background-size:cover}
 .fade{position:absolute;top:620px;left:0;width:1080px;height:160px;background:linear-gradient(rgba(13,24,46,0),#0D182E)}
 .pn{position:absolute;top:780px;left:0;width:1080px;height:570px;padding:20px 84px}
 .k{font-family:P6;font-size:24px;letter-spacing:6px;color:#62A5F4}
-.m{font-family:Georgia,serif;font-style:italic;color:#fff;font-size:34px;margin-top:26px}.m b{font-family:P6;font-style:normal;font-size:24px;color:#62A5F4;margin-left:8px}
+.m{font-family:L,serif;font-style:italic;font-weight:600;color:#fff;font-size:36px;margin-top:26px}.m b{font-family:P6;font-style:normal;font-size:24px;color:#62A5F4;margin-left:8px}
 h1{font-family:P6;font-weight:600;color:#fff;font-size:62px;line-height:76px;margin-top:22px}
 .u{position:absolute;left:84px;bottom:70px;font-family:P;font-size:26px;color:#C9D3E3}.u span{color:#62A5F4}
-.bar{position:absolute;left:84px;top:-4px;width:90px;height:6px;background:#007DFF}'''%(D,D)
+.bar{position:absolute;left:84px;top:-4px;width:90px;height:6px;background:#007DFF}'''%(D,D,D)
 async def m():
   async with async_playwright() as p:
     b=await p.chromium.launch();pg=await b.new_page(viewport={'width':1080,'height':1350})
