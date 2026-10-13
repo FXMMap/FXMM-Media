@@ -1,8 +1,8 @@
 import asyncio,os,sys
 from playwright.async_api import async_playwright
 D=os.path.dirname(os.path.abspath(__file__))
-ITEMS=[('a04_cover.jpg','Why Price Reacts Where Volume Has Traded','FRIDAY · OCT 23','50% 50%','sub_oct23.jpg'),
-       ('a05_cover.jpg','Patience Isn\'t a Personality Trait. It\'s a Plan.','TUESDAY · OCT 27','38% 50%','sub_oct27.jpg')]
+ITEMS=[('a04_cover.jpg','Why Price Reacts Where Volume Has Traded','FRIDAY · OCT 23','50% 50%','sub_oct23_lora.jpg'),
+       ('a05_cover.jpg','Patience Isn\'t a Personality Trait. It\'s a Plan.','TUESDAY · OCT 27','38% 50%','sub_oct27_lora.jpg')]
 CSS='''@font-face{font-family:L;font-style:italic;src:url(%s/../fonts/Lora-Italic-Variable.ttf)}@font-face{font-family:P;src:url(%s/poppins-latin-500-normal.woff2)}@font-face{font-family:P6;src:url(%s/poppins-latin-600-normal.woff2)}
 *{margin:0;box-sizing:border-box}body{width:1080px;height:1350px;background:#0D182E;overflow:hidden;position:relative}
 .ph{position:absolute;top:0;left:0;width:1080px;height:780px;background-size:cover}
