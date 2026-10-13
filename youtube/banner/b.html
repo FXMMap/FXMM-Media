@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:P;src:url(poppins-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2)}
+*{margin:0;box-sizing:border-box}
+body{width:2560px;height:1440px;overflow:hidden;font-family:P}
+.c{position:relative;width:2560px;height:1440px;overflow:hidden}
+.safe{position:absolute;left:507px;top:508px;width:1546px;height:423px;display:flex;align-items:center;padding:0 70px}
+.k{font-family:M;letter-spacing:.32em;font-size:26px;text-transform:uppercase}
+h1{font-weight:700;line-height:1.08;letter-spacing:-.01em}
+/* A navy */
+.A{background:#0D182E;color:#fff}
+.A .dots{position:absolute;inset:0;background-image:radial-gradient(#62A5F4 1.6px,transparent 1.8px);background-size:34px 34px;opacity:.16;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 75%)}
+.A h1{font-size:66px}.A h1 b{color:#62A5F4}
+.A .k{color:#62A5F4;margin-bottom:26px}
+.A .sub{font-size:31px;color:#A9B6D1;margin-top:24px}
+.A .logo{position:absolute;right:70px;height:84px}
+/* B light with candles */
+.B{background:#F7F6F2;color:#0D182E}
+.B svg{position:absolute;left:0;top:0}
+.B h1{font-size:72px}.B h1 b{color:#0060C7}
+.B .k{color:#0060C7;margin-bottom:24px}
+.B .sub{font-size:30px;color:#4a556b;margin-top:22px}
+.B .blogo{height:64px;display:block;margin-bottom:30px}
+.B .txt{padding:0}
+/* C centered */
+.C{background:#0D182E;color:#fff;text-align:center}
+.C .iso{position:absolute;left:50%;top:50%;width:1500px;transform:translate(-50%,-50%);opacity:.05}
+.C .safe{flex-direction:column;justify-content:center}
+.C .logo{height:120px}
+.C h1{font-size:58px;margin-top:40px;font-weight:500}.C h1 b{color:#62A5F4;font-weight:700}
+.C .url{font-family:M;font-size:26px;letter-spacing:.3em;color:#62A5F4;margin-top:26px}
+.guide .safe{outline:4px dashed #ff3b6b}
+</style></head><body>
+<div id="A" class="c A"><div class="dots"></div>
+ <div class="safe"><div><div class="k">FXMM · Forex Market Map</div>
+ <h1>Most traders chase price.<br><b>We mark the zone first.</b></h1>
+ <div class="sub">Institutional-grade market reports for forex traders · fxmarketmap.com</div></div>
+ <img class="logo" src="logoW.png"></div></div>
+
+<div id="B" class="c B"><svg id="ch" width="2560" height="1440"></svg>
+ <div class="safe"><div class="txt"><img class="blogo" src="logoD.png">
+ <h1>Stop chasing price.<br><b>Let it come to you.</b></h1>
+ <div class="sub">Market reports for forex traders · fxmarketmap.com</div></div></div></div>
+
+<div id="C" class="c C"><img class="iso" src="mark.png">
+ <div class="safe"><img class="logo" src="logoW.png">
+ <h1>We mark the zone <b>before price gets there.</b></h1>
+ <div class="url">fxmarketmap.com</div></div></div>
+<script>
+const s=document.getElementById('ch');let h='';
+const zx=1660,zt=830,zb=880;
+h+=`<rect x="${zx}" y="${zt}" width="${2560-zx}" height="${zb-zt}" fill="#007DFF" opacity=".14"/>`;
+for(const y of [zt,zb])h+=`<line x1="${zx}" x2="2560" y1="${y}" y2="${y}" stroke="#007DFF" stroke-width="3" stroke-dasharray="10 8" opacity=".7"/>`;
+h+=`<text x="${zx+14}" y="${zt-16}" font-family="M" font-size="22" letter-spacing="5" fill="#0060C7">ZONE OF INTEREST</text>`;
+let seed=11;const r=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
+let p=620,x=1090;
+for(let i=0;i<24;i++){let drift=i<8?Math.sin(i/2)*12:12.5;let o=p,c=p+drift+(r()-.5)*26;let hi=Math.min(o,c)-r()*16,lo=Math.max(o,c)+r()*16;
+ if(i==23){c=zt+10;lo=zt+24}
+ const up=c<o,col=up?'#15875B':'#CC3A3F';
+ h+=`<line x1="${x+10}" x2="${x+10}" y1="${hi}" y2="${lo}" stroke="${col}" stroke-width="3"/><rect x="${x}" y="${Math.min(o,c)}" width="20" height="${Math.max(4,Math.abs(c-o))}" fill="${col}" rx="2"/>`;
+ p=c;x+=23}
+s.innerHTML=h;
+</script></body></html>
