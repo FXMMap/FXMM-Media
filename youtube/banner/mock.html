@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:P;src:url(poppins-latin-400-normal.woff2);font-weight:400}
+*{margin:0;box-sizing:border-box}body{width:2200px;background:#e9ecf1;font-family:Roboto,Arial,sans-serif;padding:50px}
+h2{font-family:P;font-weight:600;font-size:34px;color:#0D182E;margin:0 0 18px}
+.note{font-family:P;font-size:22px;color:#4a556b;margin:0 0 22px}
+.row{display:flex;gap:60px;align-items:flex-start}
+.mac{width:1450px;background:#0f0f0f;border-radius:18px;padding:0 0 30px;box-shadow:0 20px 50px rgba(0,0,0,.25);overflow:hidden}
+.bar{height:46px;background:#2a2a2a;display:flex;align-items:center;gap:10px;padding:0 18px}.bar i{width:13px;height:13px;border-radius:50%;background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.bar span{margin-left:30px;background:#444;color:#ddd;font-size:16px;padding:6px 20px;border-radius:8px;width:600px}
+.yt{height:60px;display:flex;align-items:center;padding:0 24px;color:#fff;font-size:20px;font-weight:bold}.yt b{background:#f00;border-radius:6px;padding:2px 9px;margin-right:6px;font-size:14px}
+.dban{margin:10px 40px 0;border-radius:14px;overflow:hidden}.dban img{width:100%;display:block}
+.chan{display:flex;gap:26px;align-items:center;margin:26px 40px 0;color:#fff}
+.av{border-radius:50%;background:#0D182E;display:grid;place-items:center;flex:none}.av img{width:62%}
+.nm{font-size:36px;font-weight:bold}.hd{color:#aaa;font-size:18px;margin-top:6px}.ds{color:#aaa;font-size:17px;margin-top:8px}
+.btn{display:inline-block;background:#fff;color:#000;border-radius:20px;padding:9px 18px;font-size:16px;font-weight:bold;margin-top:12px}
+.tabs{display:flex;gap:36px;color:#aaa;font-size:18px;margin:26px 40px 0;border-bottom:1px solid #333;padding-bottom:12px}.tabs b{color:#fff}
+.phone{width:430px;background:#0f0f0f;border-radius:56px;border:12px solid #1c1c1e;padding:20px 0 40px;box-shadow:0 20px 50px rgba(0,0,0,.3);color:#fff;flex:none}
+.st{display:flex;justify-content:space-between;padding:4px 30px 18px;font-size:18px;font-weight:bold}
+.pban{margin:6px 14px 0;border-radius:12px;overflow:hidden}.pban img{width:100%;display:block}
+.pchan{display:flex;gap:16px;align-items:center;margin:18px 14px 0}.pchan .nm{font-size:24px}.pchan .hd{font-size:14px}
+.full{margin-top:50px;display:flex;gap:40px;align-items:flex-start}
+.fw{position:relative;width:1280px}.fw img{width:100%;display:block;border-radius:8px}
+.r{position:absolute;border:5px dashed}.legend div{font-family:P;font-size:22px;color:#0D182E;margin-bottom:14px;display:flex;gap:12px;align-items:center}.legend i{width:40px;height:0;border-top:5px dashed}
+</style></head><body>
+<h2>Cómo se vería el banner en el canal (ejemplo con la opción A)</h2>
+<div class="note">Es la misma imagen; cada dispositivo muestra un recorte distinto. Debajo del banner YouTube pone solo tu foto de perfil y el nombre.</div>
+<div class="row">
+ <div><h2 style="font-size:26px">En computadora</h2>
+ <div class="mac"><div class="bar"><i></i><i></i><i></i><span>youtube.com/@fxmarketmap</span></div>
+  <div class="yt"><b>▶</b>YouTube</div>
+  <div class="dban"><img src="crop_desk.png"></div>
+  <div class="chan"><div class="av" style="width:150px;height:150px"><img src="mark.png"></div>
+   <div><div class="nm">FXMM Analytics</div><div class="hd">@fxmarketmap · 0 suscriptores · 0 videos</div><div class="ds">FXMM marks the zone before price gets there. ...más</div><div class="btn">Suscribirse</div></div></div>
+  <div class="tabs"><b>Principal</b><span>Videos</span><span>Shorts</span><span>Playlists</span></div>
+ </div></div>
+ <div><h2 style="font-size:26px">En celular</h2>
+ <div class="phone"><div class="st"><span>7:35</span><span>●●● 5G</span></div>
+  <div class="pban"><img src="crop_mob.png"></div>
+  <div class="pchan"><div class="av" style="width:88px;height:88px"><img src="mark.png"></div>
+   <div><div class="nm">FXMM Analytics</div><div class="hd">@fxmarketmap</div><div class="hd">0 suscriptores · 0 videos</div></div></div>
+  <div style="margin:16px 14px 0;color:#aaa;font-size:15px">FXMM marks the zone before price gets there. ...más</div>
+  <div style="margin:16px 14px 0;background:#fff;color:#000;border-radius:22px;text-align:center;padding:11px;font-weight:bold">Suscribirse</div>
+  <div style="display:flex;gap:22px;margin:22px 14px 0;color:#aaa;font-size:16px"><b style="color:#fff">Principal</b><span>Videos</span><span>Shorts</span></div>
+ </div></div>
+</div>
+<div class="full"><div><h2 style="font-size:26px">La imagen completa que se sube (y lo que se ve en TV)</h2>
+ <div class="fw"><img src="full_small.png">
+  <div class="r" style="left:0;top:254px;width:1280px;height:212px;border-color:#ffb020"></div>
+  <div class="r" style="left:253px;top:254px;width:774px;height:212px;border-color:#ff3b6b"></div></div></div>
+ <div class="legend" style="margin-top:70px"><div><i style="border-color:#ffb020"></i>Lo que se ve en computadora</div><div><i style="border-color:#ff3b6b"></i>Lo que se ve en celular</div><div>Todo el rectángulo: TV</div></div></div>
+</body></html>
