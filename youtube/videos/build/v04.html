@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-300-normal.woff2);font-weight:300}@font-face{font-family:P;src:url(poppins-latin-400-normal.woff2);font-weight:400}@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+html,body{margin:0;background:#0a1224}canvas{display:block}</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="engine.js"></script><script>
+const TLJ={"L": [1.4, 5.686, 13.18, 19.494, 24.446, 30.389, 36.503, 48.181], "D": [3.336, 6.095, 4.914, 3.551, 4.543, 4.715, 10.278, 2.868], "body": 51.249, "total": 54.849};const L=TLJ.L,D=TLJ.D;const ZT=1.09024,ZB=1.08724;const x0=170,sp=44,w=26,XI=i=>x0+i*sp;
+const DOWN=[1.0918,1.0915,1.0916,1.0912,1.0910,1.0911,1.0907,1.0905,1.0906,1.0902,1.0900,1.0901];
+const CF=buildC([...DOWN,1.0895,1.0884,1.0887,1.0893,1.0899,1.0905,1.0910,1.0914],1.0920,4,{13:{l:1.08805},14:{o:1.0884,l:1.08830}});
+const SER=series([[0,1.0950],[60,1.0962],[120,1.0941],[160,1.0930]],31);
+const SCN=[];const S=(a,b,f)=>SCN.push([a,b,f]);const st=i=>L[i]-0.45;
+S(0,st(1),T=>{view(1.0862,1.0985);background(null);grid();X.save();X.beginPath();X.rect(1260,0,660,1080);X.clip();drawSeries(SER,lerpK(T,[[0,120],[st(1),150]]),{sp:19,w:12});X.restore();
+ const out=1-ramp(T,st(1)-0.6,.45);X.globalAlpha=.92*out;const g=X.createLinearGradient(0,0,1300,0);g.addColorStop(0,'rgba(9,16,32,.97)');g.addColorStop(.7,'rgba(9,16,32,.8)');g.addColorStop(1,'rgba(9,16,32,0)');X.fillStyle=g;X.fillRect(0,0,1920,1080);X.globalAlpha=1;
+ kicker('FXMM EDUCATION · 04',120,330,ramp(T,0.2)*out);bigLine('Size it to the zone',120,430,100,'#fff',ramp(T,0.4,.6),(1-ramp(T,0.4,.6))*60,out);
+ bigLine('How the report’s grade shapes your trade.',120,535,46,BLUE_T,ramp(T,L[0]+1.4,.6),(1-ramp(T,L[0]+1.4,.6))*40,out)});
+S(st(1),st(2),T=>{background(null);const a=ramp(T,st(1)+0.2,.6);X.globalAlpha=a;X.fillStyle='#fff';rr(260,300,1400,300,14);X.fill();X.globalAlpha=1;
+ if(a>0){X.globalAlpha=a;X.textBaseline='middle';X.font='600 26px M';X.fillStyle='rgb(30,110,220)';X.fillText('CONFLUENCE GRADE',310,380);X.fillStyle='rgb(14,26,52)';rr(640,354,200,52,6);X.fill();X.fillStyle='#fff';X.font='700 26px P';X.fillText('MODERATE',672,381);
+  const chips=['CME volume node in zone','options cluster in zone','gamma flip near zone','positioning aligned'];let cx=310;X.font='400 24px P';chips.forEach((c,i)=>{const cw=X.measureText(c).width+36;const ca=ramp(T,L[1]+0.6+i*0.3);X.globalAlpha=a*ca;X.strokeStyle='rgb(200,205,215)';X.lineWidth=1.5;rr(cx,470,cw,48,24);X.stroke();X.fillStyle='rgb(40,46,60)';X.fillText(c,cx+18,495);cx+=cw+14});X.globalAlpha=1}
+ pill('It doesn’t just rate the zone.',960,720,ramp(T,L[1]+2.4));pill('It tells you how to approach it.',960,800,ramp(T,L[1]+4.0))});
+const CX=[150,725,1300];
+function cards(T,show,hl,fill){[0,1,2].forEach(k=>gradeCard(CX[k],320-(1-show[k])*40,show[k],k,hl[k],fill[k]))}
+S(st(2),st(5),T=>{background(null);label(960,220,'Confluence Grade',ramp(T,st(2)+0.2),{f:'600 48px P'});
+ const s=[ramp(T,L[2]),ramp(T,L[3]),ramp(T,L[4])];const h=[ramp(T,L[2])*(1-ramp(T,L[3]-0.2)),ramp(T,L[3])*(1-ramp(T,L[4]-0.2)),ramp(T,L[4])];
+ const f=[ramp(T,L[2]+2.2,1),ramp(T,L[3]+1.4,1),ramp(T,L[4]+2.2,1)];cards(T,s,h,f);
+ const dim=[0,1,2].map(k=>s[k]*(1-h[k]));dim.forEach((d,k)=>{if(d>0.01){X.globalAlpha=d*.45;X.fillStyle='rgb(9,16,32)';rr(CX[k],320,470,420,14);X.fill();X.globalAlpha=1}})});
+S(st(5),st(6),T=>{background(null);label(960,220,'Same reaction, different plan.',ramp(T,st(5)+0.2),{f:'600 48px P'});cards(T,[1,1,1],[0,0,0],[1,1,1]);
+ const a=ramp(T,L[5]+2.2);if(a>0){X.globalAlpha=a;X.strokeStyle=BLUE_T;X.lineWidth=3;[0,1,2].forEach(k=>{X.strokeRect(CX[k]+20,320+225,(470-60)*[0.3,0.55,1][k]+30,60)});X.globalAlpha=1}
+ pill('The lighter the grade, the closer your first target.',960,850,ramp(T,L[5]+2.4))});
+S(st(6),L[7]-0.4,T=>{const t=T-L[6];view(1.0864,1.0926);background('M15');grid();zoneBand(ZT,ZB,{top:1,bot:1,fill:1,tags:1});chip('M15',1480,150,true);
+ drawFixed(CF,x0,sp,w,lerpK(t,[[-1,13],[0.6,13],[1.6,15],[6.0,15],[8.5,20]]));
+ const ok=ramp(t,1.4);ring(XI(14),Y(1.08830)+16,ok,'rgb(110,210,150)');callout(XI(14)+30,Y(1.08830)+64,'✓ Where price confirms',ok,{f:'500 30px P',c:'rgb(150,230,180)'});
+ const ed=ramp(t,3.0);callout(XI(17),Y(ZT)-46,'✕ Not from the edge of the zone',ed,{f:'500 30px P',c:'rgb(240,140,140)'});if(ed>0){X.globalAlpha=ed;X.strokeStyle='rgb(240,120,120)';X.lineWidth=3;X.beginPath();X.moveTo(PX0,Y(ZT));X.lineTo(PX1,Y(ZT));X.stroke();X.globalAlpha=1}
+ const br=ramp(t,4.6);if(br>0){X.globalAlpha=br;X.strokeStyle='#fff';X.lineWidth=2;const bx=1520;X.beginPath();X.moveTo(bx,Y(ZT));X.lineTo(bx+16,Y(ZT));X.moveTo(bx+16,Y(ZT));X.lineTo(bx+16,Y(ZB));X.lineTo(bx,Y(ZB));X.stroke();X.globalAlpha=1;callout(bx-10,(Y(ZT)+Y(ZB))/2,'30 pips',br,{f:'600 30px P',align:'right'})}
+ const wr=ramp(t,6.4);if(wr>0){X.globalAlpha=wr;X.setLineDash([10,8]);X.strokeStyle='rgb(240,120,120)';X.lineWidth=2.5;[[1.08745,'Stop?'],[1.0918,'Target?']].forEach(([p,s])=>{const y=Y(p);X.beginPath();X.moveTo(XI(15),y);X.lineTo(1450,y);X.stroke()});X.setLineDash([]);X.globalAlpha=1;
+  callout(1440,Y(1.0875)+30,'Wrong place',wr,{f:'500 28px P',c:'rgb(240,140,140)',align:'right'})}});
+window.draw=function(T){X.clearRect(0,0,1920,1080);const E=L[7]-0.4;if(T>=E){endCard(T-E,'The zone tells you where. The grade tells you how much.');return}
+ for(const [a,b,f] of SCN){if(T>=a&&T<b){f(T);if(a>0&&T<a+0.3)fadeFrom(T,a,a+0.3);if(T>b-0.3)fadeTo(T,b-0.3,b);return}}};
+</script></body></html>

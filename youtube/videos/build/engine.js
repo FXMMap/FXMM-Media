@@ -83,3 +83,10 @@ function centerText(parts,y,size,a,weight=600){if(a<=0)return;X.globalAlpha=a;X.
 function panel(x,y,w,h,a){X.globalAlpha=a;X.fillStyle='rgba(12,22,44,.96)';rr(x,y,w,h,12);X.fill();X.strokeStyle='rgba(120,160,220,.35)';X.lineWidth=1.5;X.stroke();X.globalAlpha=1}
 function drawFixed(S,x0,sp,w,n){const full=Math.floor(n),f=n-full;
  for(let i=0;i<Math.min(S.length,Math.ceil(n));i++){let k=S[i];if(i===full&&f>0){const ff=ease(f),c=k.o+(k.c-k.o)*ff;k={o:k.o,c,h:Math.max(k.o,c)+(k.h-Math.max(k.o,k.c))*ff,l:Math.min(k.o,c)-(Math.min(k.o,k.c)-k.l)*ff}}candle(x0+i*sp,k,w)}}
+function gradeCard(x,y,a,k,hl,fill){if(a<=0)return;const G=[['LIGHT','Little backing',0.3,0.3,['Smaller size','Close first target']],['MODERATE','Split picture',0.6,0.55,['Lighter than usual']],['HEAVY','Strong backing',1,1,['Room to let it develop']]][k];
+ const W=470,H=420;X.globalAlpha=a;X.fillStyle='rgba(14,26,52,.97)';rr(x,y,W,H,14);X.fill();X.strokeStyle=hl>0?`rgba(98,165,244,${.4+.6*hl})`:'rgba(120,160,220,.3)';X.lineWidth=hl>0?3:1.5;X.stroke();
+ X.font='700 22px P';const cw=X.measureText(G[0]).width+28;X.fillStyle='rgba(255,255,255,.1)';rr(x+30,y+30,cw,38,6);X.fill();X.fillStyle='#fff';X.textBaseline='middle';X.textAlign='left';X.fillText(G[0],x+44,y+50);
+ X.font='500 34px P';X.fillText(G[1],x+30,y+112);
+ X.font='600 18px M';X.fillStyle='rgb(140,150,175)';X.fillText('SIZE',x+30,y+165);X.fillStyle='rgba(255,255,255,.08)';rr(x+30,y+180,W-60,14,7);X.fill();X.fillStyle=TAG;rr(x+30,y+180,(W-60)*G[2]*fill,14,7);X.fill();
+ X.fillStyle='rgb(140,150,175)';X.fillText('FIRST TARGET',x+30,y+235);const al=(W-80)*G[3]*fill;X.strokeStyle='#fff';X.lineWidth=3;X.beginPath();X.moveTo(x+36,y+262);X.lineTo(x+36+al,y+262);X.stroke();X.beginPath();X.arc(x+36,y+262,6,0,7);X.fillStyle='#fff';X.fill();X.beginPath();X.moveTo(x+36+al+2,y+262);X.lineTo(x+36+al-12,y+254);X.lineTo(x+36+al-12,y+270);X.closePath();X.fill();
+ X.font='400 28px P';X.fillStyle='rgb(210,215,225)';G[4].forEach((s,i)=>X.fillText('· '+s,x+30,y+322+i*42));X.globalAlpha=1}
