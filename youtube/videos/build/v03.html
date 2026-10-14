@@ -1,0 +1,93 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-300-normal.woff2);font-weight:300}@font-face{font-family:P;src:url(poppins-latin-400-normal.woff2);font-weight:400}@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+html,body{margin:0;background:#0a1224}canvas{display:block}</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="engine.js"></script><script>
+const TLJ={"L": [1.4, 5.63, 16.62, 24.953, 33.364, 43.829, 53.57, 64.57, 68.585, 74.463, 81.055, 90.448, 93.163, 98.997, 104.08, 109.584, 119.454], "D": [3.28, 9.589, 6.933, 7.01, 9.065, 8.341, 9.6, 2.615, 4.928, 5.192, 8.443, 1.315, 4.884, 3.683, 4.105, 8.319, 1.284], "body": 120.937, "total": 124.537};const L=TLJ.L,D=TLJ.D;
+const ZT=1.09024,ZB=1.08724;const x0=170,sp=44,w=26,XI=i=>x0+i*sp;
+const DOWN=[1.0918,1.0915,1.0916,1.0912,1.0910,1.0911,1.0907,1.0905,1.0906,1.0902,1.0900,1.0901];
+function fixedScene(tf,S,n,o={}){view(1.0864,1.0926);background(tf);grid();zoneBand(ZT,ZB,{top:1,bot:1,fill:1,tags:1});
+ if(!o.nolevels){level(1.09051,'Gamma Flip',1);level(1.08870,'CME Volume Node',1);level(1.08738,'Put Cluster',1)}
+ chipTF(tf);drawFixed(S,x0,o.sp||sp,o.w||w,n)}
+function chipTF(tf){chip(tf,1480,150,true)}
+const PIN=buildC([...DOWN,1.0896,1.0892,1.0895,1.0899,1.0904,1.0908,1.0911],1.0920,3,{14:{o:1.0892,l:1.08770,h:1.08975}});
+const ENG=buildC([...DOWN,1.0896,1.0890,1.0899,1.0903,1.0907,1.0910],1.0920,5,{13:{o:1.0896},14:{o:1.0889,l:1.08875,h:1.09000}});
+const SWP=buildC([...DOWN,1.0893,1.0886,1.0890,1.0893,1.0889,1.0887,1.0897,1.0902,1.0906,1.0909],1.0920,8,{13:{l:1.08840},16:{o:1.0889,l:1.08795,h:1.08905},17:{o:1.0887,l:1.08860}});
+const FB=buildC([...DOWN,1.0893,1.0886,1.0881,1.0884,1.0892,1.0898,1.0903,1.0907],1.0920,13,{14:{o:1.0886,l:1.08690,h:1.08870}});
+const FVG=buildC([...DOWN,1.0895,1.0890,1.0884,1.0906,1.0912,1.0915,1.0913,1.0917],1.0920,17,{14:{o:1.0890,h:1.08912,l:1.08822},15:{o:1.0884,l:1.08830,h:1.09075},16:{o:1.0906,l:1.09010}});
+const DB=buildC([...DOWN,1.0894,1.0889,1.0884,1.0887,1.0891,1.0894,1.0896,1.0893,1.0889,1.0886,1.0886,1.0890,1.0895,1.0899,1.0903,1.0906,1.0910],1.0920,7,{14:{l:1.08800},22:{l:1.08812,o:1.0885}});
+const MS=buildC([...DOWN,1.0901,1.0884,1.0883,1.0897,1.0900,1.0904,1.0907],1.0920,3,{12:{o:1.0901},13:{o:1.0901,h:1.0902,l:1.08825},14:{o:1.0884,h:1.08868,l:1.08800},15:{o:1.0883,h:1.08985,l:1.08822}});
+const BS=buildC([1.0914,1.0912,1.0910,1.0908,1.0906,1.0905,1.0907,1.0909,1.0911,1.0908,1.0905,1.0903,1.0900,1.0898,1.0900,1.0902,1.0904,1.0901,1.0898,1.0895,1.0892,1.0890,1.0892,1.0895,1.0897,1.0894,1.0891,1.0889,1.0886,1.0884,1.0883,1.0886,1.0889,1.0892,1.0895,1.0899,1.0902,1.0904,1.0907],1.0915,11,{8:{h:1.09118},16:{h:1.09048},24:{h:1.08978},30:{l:1.08815}});
+const NOR=buildC([...DOWN,1.0896,1.0891,1.0886,1.0882,1.0879,1.0874,1.0870,1.0868],1.0920,21,{});
+const APP=buildC([...DOWN,1.0899,1.0897],1.0920,3,{});
+const SCN=[];const S=(a,b,f)=>SCN.push([a,b,f]);
+const st=i=>L[i]-0.45;
+// 0 opening
+S(0,st(1),T=>{view(1.0864,1.0926);background(null);grid();zoneBand(ZT,ZB,{top:1,bot:1,fill:.8,tags:1});
+ X.save();X.beginPath();X.rect(1260,0,660,1080);X.clip();drawFixed(PIN,XI(0)+880,sp,w,lerpK(T,[[0,6],[st(1),15]]));X.restore();
+ const out=1-ramp(T,st(1)-0.6,.45);X.globalAlpha=.92*out;const g=X.createLinearGradient(0,0,1250,0);g.addColorStop(0,'rgba(9,16,32,.97)');g.addColorStop(.7,'rgba(9,16,32,.8)');g.addColorStop(1,'rgba(9,16,32,0)');X.fillStyle=g;X.fillRect(0,0,1920,1080);X.globalAlpha=1;
+ kicker('FXMM EDUCATION · 03',120,330,ramp(T,0.2)*out);bigLine('Rejection at the zone',120,430,96,'#fff',ramp(T,0.4,.6),(1-ramp(T,0.4,.6))*60,out);
+ bigLine('What to look for when price gets there.',120,535,48,BLUE_T,ramp(T,L[0]+1.6,.6),(1-ramp(T,L[0]+1.6,.6))*40,out)});
+// 1 price reaches the zone
+S(st(1),st(2),T=>{const n=lerpK(T,[[st(1),10],[L[1]+1.5,14]]);fixedScene('M15',APP,n,{nolevels:1});
+ const a=ramp(T,L[1]+1.6);ring(XI(13),Y(ZT),a);callout(XI(13)+30,Y(ZT)-70,'First touch: not the entry',a,{f:'500 30px P'});
+ pill('Wait for a rejection',960,820,ramp(T,L[1]+3.6));
+ const m5=ramp(T,L[1]+6.5);if(m5>0){chip('M5',1580,150,m5>0.5);callout(1400,230,'M5 shows it sooner',m5,{f:'500 28px P',c:'rgb(150,195,245)'})}});
+// 2 pin bar
+S(st(2),st(3),T=>{fixedScene('M15',PIN,lerpK(T,[[st(2),12],[L[2]+0.6,12],[L[2]+2.4,15],[L[2]+5.0,15],[L[2]+6.5,19]]));
+ const a=ramp(T,L[2]+1.6);callout(XI(14)+40,Y(1.0879),'Long wick into the zone',a,{f:'500 30px P'});callout(XI(14)+40,Y(1.0896)-60,'Small body',ramp(T,L[2]+2.6),{f:'500 30px P'});
+ pill('Pin bar',XI(16),Y(1.0915),ramp(T,L[2]+4.0))});
+// 3 engulfing
+S(st(3),st(4),T=>{fixedScene('M15',ENG,lerpK(T,[[st(3),13],[L[3]+0.8,14],[L[3]+2.4,15],[L[3]+5.0,15],[L[3]+6.5,18]]));
+ const a=ramp(T,L[3]+2.6);if(a>0){X.globalAlpha=a;X.strokeStyle=BLUE_T;X.lineWidth=3;X.strokeRect(XI(13)-24,Y(1.0900)-6,XI(14)-XI(13)+48,Y(1.08885)-Y(1.0900)+12);X.globalAlpha=1}
+ callout(XI(14)+44,Y(1.0894),'Its body covers the one before',a,{f:'500 30px P'});pill('Engulfing candle',XI(15),Y(1.0915),ramp(T,L[3]+5.2))});
+// 4 sweep
+S(st(4),st(5),T=>{fixedScene('M15',SWP,lerpK(T,[[st(4),14],[L[4]+1.0,15],[L[4]+3.0,17],[L[4]+5.0,18],[L[4]+7.5,21]]));
+ hlineX(XI(13),XI(18),1.08840,ramp(T,L[4]+1.4,.6));callout(XI(13)-30,Y(1.08840)+46,'Recent low',ramp(T,L[4]+1.5),{f:'500 28px P',align:'right'});
+ callout(XI(16)+30,Y(1.08795)+50,'Stops taken',ramp(T,L[4]+3.3),{f:'500 28px P'});callout(XI(17)+40,Y(1.0893),'Snaps right back',ramp(T,L[4]+4.6),{f:'500 28px P'});
+ pill('Liquidity sweep',XI(17),Y(1.0915),ramp(T,L[4]+6.6))});
+// 5 false break
+S(st(5),st(6),T=>{fixedScene('M15',FB,lerpK(T,[[st(5),13],[L[5]+0.8,14],[L[5]+2.8,15],[L[5]+5.0,15],[L[5]+7.0,19]]));
+ callout(XI(14)+40,Y(1.08690)+10,'Pushes out of the zone',ramp(T,L[5]+1.8),{f:'500 28px P'});callout(XI(14)+40,Y(1.0882)-50,'Body closes back inside',ramp(T,L[5]+3.6),{f:'500 28px P'});
+ pill('False break',XI(16),Y(1.0915),ramp(T,L[5]+5.6))});
+// 6 new FVG / OB
+S(st(6),st(7),T=>{fixedScene('M15',FVG,lerpK(T,[[st(6),13],[L[6]+1.2,14],[L[6]+3.0,16],[L[6]+5.0,17],[L[6]+7.0,20]]));
+ boxLabel(XI(14)-w/2,1.08912,XI(21),1.08822,'New OB',ramp(T,L[6]+4.0,.8),'rgba(255,255,255,.07)');boxLabel(XI(15)+w/2+2,1.09010,XI(21),1.08912,'New FVG',ramp(T,L[6]+5.0,.8));
+ pill('Buyers are stepping in',XI(16),Y(1.0920),ramp(T,L[6]+8.0))});
+// 7 the most common
+const FIVE=['Pin bar','Engulfing candle','Liquidity sweep','False break','New FVG / OB'],MORE=['Double bottom','Morning star','Break of structure (M5)'];
+S(st(7),st(8),T=>{background(null);label(960,300,'The most common rejections',ramp(T,st(7)+0.2),{f:'600 52px P'});
+ FIVE.forEach((s,i)=>callout(960,400+i*76,'✓  '+s,ramp(T,st(7)+0.4+i*0.25),{f:'500 34px P',align:'center'}));
+ label(960,800,'…but not the only ones',ramp(T,L[7]+1.4),{f:'500 36px P',c:BLUE_T})});
+// 8-9 double bottom
+S(st(8),st(10),T=>{fixedScene('M15',DB,lerpK(T,[[st(8),10],[L[8]+0.4,10],[L[8]+1.9,15],[L[8]+2.6,15],[L[8]+3.6,19],[L[8]+4.6,23],[L[9]+0.3,23],[L[9]+4.2,29]]),{sp:42});
+ const s2=42,X2=i=>x0+i*s2;ring(X2(14),Y(1.08800)+18,ramp(T,L[8]+1.9));callout(X2(14),Y(1.08800)+62,'1st test',ramp(T,L[8]+2.0),{f:'500 28px P',align:'center'});
+ ring(X2(22),Y(1.08812)+18,ramp(T,L[8]+4.6));callout(X2(22),Y(1.08812)+62,'2nd test',ramp(T,L[8]+4.7),{f:'500 28px P',align:'center'});
+ hlineX(X2(14),X2(22)+60,1.08800,ramp(T,L[9]+0.3,.8));callout(X2(22)+80,Y(1.08800),'Holds at or above the first low',ramp(T,L[9]+0.9),{f:'500 28px P'});
+ pill('Double bottom',X2(18),Y(1.0912),ramp(T,L[9]+3.6))});
+// 10-11 morning star
+S(st(10),st(12),T=>{const t=T-L[10];fixedScene('M15',MS,lerpK(t,[[-1,13],[1.2,13],[2.3,14],[2.9,14],[3.6,15],[4.9,15],[5.9,16],[L[11]-L[10],16],[L[11]-L[10]+1.4,19]]));
+ const xa=XI(13),xb=XI(14),xc=XI(15);label(xa,Y(1.0902)-30,'1',ramp(t,2.2),{f:'600 30px P'});label(xb,Y(1.08868)-30,'2',ramp(t,3.5),{f:'600 30px P'});label(xc,Y(1.08985)-30,'3',ramp(t,5.9),{f:'600 30px P'});
+ callout(xa-34,Y(1.0880)+64,'Strong bearish',ramp(t,2.0),{f:'500 28px P',align:'right'});callout(xb,Y(1.0880)+64,'Hesitates',ramp(t,3.4),{f:'500 28px P',align:'center'});callout(xc+40,Y(1.0889),'Strong bullish',ramp(t,5.6),{f:'500 28px P'});
+ const mid=(1.0901+1.0884)/2;hlineX(xa-30,xc+200,mid,ramp(t,6.4,.7));callout(xc+214,Y(mid),'Midpoint of candle 1',ramp(t,6.9),{f:'500 28px P',c:'rgb(150,195,245)'});
+ pill('Momentum just turned',xb,Y(1.0915),ramp(T,L[11]+0.1))});
+// 12-13 BOS on M5
+S(st(12),st(14),T=>{const t=T-L[12];view(1.0864,1.0926);background('M5');grid();zoneBand(ZT,ZB,{top:1,bot:1,fill:1,tags:1});chip('M5',1480,150,true);
+ const s5=30,w5=18,X5=i=>x0+i*s5;drawFixed(BS,x0,s5,w5,lerpK(t,[[-1,18],[0.3,18],[3.6,31],[L[13]-L[12],31],[L[13]-L[12]+1.4,36],[L[13]-L[12]+2.2,36],[L[13]-L[12]+3.6,39]]));
+ [[8,1.09118],[16,1.09048],[24,1.08978]].forEach(([i,h],k)=>{const a=ramp(t,2.0+k*0.7);ring(X5(i),Y(h)-16,a);label(X5(i),Y(h)-48,'LH',a,{f:'600 24px P'})});
+ const tb=L[13]-L[12],br=ramp(t,tb+1.4,.3);hlineX(X5(24),X5(41),1.08978,ramp(t,4.0,.8));
+ callout(X5(41)+16,Y(1.08978),'Last lower high',ramp(t,4.4)*(1-br),{f:'500 28px P'});callout(X5(41)+16,Y(1.08978),'Broken: the drop on M5 is over',br,{f:'500 28px P',c:'rgb(150,195,245)'});
+ pill('Break of structure',X5(31),Y(1.0918),ramp(t,tb+2.4))});
+// 14 recap
+S(st(14),st(15),T=>{background(null);label(960,250,'Any of them, on M15 or M5:',ramp(T,st(14)+0.2),{f:'600 46px P'});
+ [...FIVE,...MORE].forEach((s,i)=>callout(i<4?560:1360,360+(i%4)*84,s,ramp(T,st(14)+0.35+i*0.15),{f:'500 32px P',align:'center'}));
+ centerText([['Price is ','#fff'],['reacting.',BLUE_T]],760+40,58,ramp(T,L[14]+2.0))});
+// 15 no reaction
+S(st(15),st(16),T=>{const t=T-L[15];fixedScene('M15',NOR,lerpK(t,[[-1,12],[0.2,12],[2.6,20]]));
+ callout(XI(19)+40,Y(1.0870),'No reaction',ramp(t,2.0),{f:'500 30px P'});pill('Don’t chase it',XI(16),Y(1.0915),ramp(t,2.6));
+ const fa=ramp(t,5.0,.5);if(fa>0){X.globalAlpha=fa*.85;X.fillStyle='rgb(9,16,32)';X.fillRect(0,0,1920,1080);X.globalAlpha=1;
+  label(960,480,'A missed trade costs you nothing.',fa,{f:'600 54px P'});label(960,570,'A forced one can.',ramp(t,6.6,.5),{f:'600 54px P',c:BLUE_T})}});
+window.draw=function(T){X.clearRect(0,0,1920,1080);
+ const E=L[16]-0.4;if(T>=E){endCard(T-E,'Let price show its hand.');return}
+ for(const [a,b,f] of SCN){if(T>=a&&T<b){f(T);if(a>0&&T<a+0.3)fadeFrom(T,a,a+0.3);if(T>b-0.3)fadeTo(T,b-0.3,b);return}}};
+function hlineX(x1,x2,p,a){if(a<=0)return;X.globalAlpha=a;X.setLineDash([7,6]);X.strokeStyle='rgba(255,255,255,.75)';X.lineWidth=2;X.beginPath();X.moveTo(x1,Y(p));X.lineTo(x1+(x2-x1)*cl(a*1.3),Y(p));X.stroke();X.setLineDash([]);X.globalAlpha=1}
+</script></body></html>
