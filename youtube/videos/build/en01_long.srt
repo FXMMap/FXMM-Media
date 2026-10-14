@@ -1,0 +1,65 @@
+1
+00:00:00,150 --> 00:00:02,669
+Prepare your chart before price gets there.
+
+2
+00:00:03,050 --> 00:00:05,946
+Every report comes with the
+zone and its key levels.
+
+3
+00:00:05,946 --> 00:00:07,616
+Copy them from your dashboard.
+
+4
+00:00:07,816 --> 00:00:09,990
+Mark the zone with its two prices.
+
+5
+00:00:10,316 --> 00:00:13,316
+Add the key levels. That's
+where the reaction can start.
+
+6
+00:00:13,516 --> 00:00:16,470
+Set an alert on the edge price reaches first.
+
+7
+00:00:16,470 --> 00:00:20,802
+FXMM doesn't notify you when price
+gets there. Your platform does.
+
+8
+00:00:21,002 --> 00:00:24,263
+No need to watch the screen all
+day. The alert will tell you.
+
+9
+00:00:24,567 --> 00:00:27,105
+Each level on your chart
+is there for a reason.
+
+10
+00:00:27,267 --> 00:00:30,232
+The two edges show where the
+zone starts and where it ends.
+
+11
+00:00:30,367 --> 00:00:33,673
+The key levels show where a
+reaction is more likely to start.
+
+12
+00:00:33,767 --> 00:00:39,697
+They come from institutional data: a CME volume
+node, an options cluster, or the gamma flip.
+
+13
+00:00:39,867 --> 00:00:45,221
+So when the alert goes off, you're not starting
+from zero. Everything is already on your chart.
+
+14
+00:00:45,417 --> 00:00:47,827
+All that's left is to wait for a rejection.
+

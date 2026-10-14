@@ -1,0 +1,143 @@
+1
+00:00:00,150 --> 00:00:03,401
+Rejection at the zone: what to
+look for when price gets there.
+
+2
+00:00:03,601 --> 00:00:07,703
+Price has reached the zone. The
+first touch isn't the entry:
+
+3
+00:00:07,703 --> 00:00:09,138
+wait for a rejection.
+
+4
+00:00:09,138 --> 00:00:12,898
+You can spot it on M15, or
+drop to M5 to see it sooner.
+
+5
+00:00:13,098 --> 00:00:16,466
+A pin bar: a long wick into
+the zone and a small body.
+
+6
+00:00:16,466 --> 00:00:19,835
+Sellers pushed in, and buyers
+pushed price right back.
+
+7
+00:00:20,035 --> 00:00:21,301
+An engulfing candle:
+
+8
+00:00:21,301 --> 00:00:25,227
+its body fully covers the one
+before, in the zone's direction.
+
+9
+00:00:25,227 --> 00:00:26,936
+Control just changed hands.
+
+10
+00:00:27,136 --> 00:00:28,204
+A liquidity sweep:
+
+11
+00:00:28,204 --> 00:00:33,541
+price breaks a recent low inside the zone,
+takes the stops below it, and snaps right back.
+
+12
+00:00:33,541 --> 00:00:35,973
+What looked like a breakdown was a sweep.
+
+13
+00:00:36,173 --> 00:00:37,014
+A false break:
+
+14
+00:00:37,014 --> 00:00:41,161
+price pushes out of the zone, but
+the candle body closes back inside.
+
+15
+00:00:41,161 --> 00:00:44,166
+The break didn't hold, and
+that's a rejection too.
+
+16
+00:00:44,366 --> 00:00:46,704
+A new Fair Value Gap or Order Block:
+
+17
+00:00:46,704 --> 00:00:52,225
+after the turn, price moves away fast and
+leaves one behind, in the zone's direction.
+
+18
+00:00:52,225 --> 00:00:53,719
+Buyers are stepping in.
+
+19
+00:00:53,919 --> 00:00:57,233
+These are the most common,
+but not the only ones.
+
+20
+00:00:57,383 --> 00:01:02,311
+A double bottom: price tests the zone,
+bounces, and comes back for a second test.
+
+21
+00:01:02,483 --> 00:01:07,689
+The second low holds at or above the first.
+Sellers tried twice and couldn't push lower.
+
+22
+00:01:08,183 --> 00:01:12,407
+A morning star: a strong bearish
+candle, then a small one that hesitates,
+
+23
+00:01:12,403 --> 00:01:16,286
+then a strong bullish candle that
+closes past the middle of the first.
+
+24
+00:01:16,433 --> 00:01:17,799
+Momentum just turned.
+
+25
+00:01:18,333 --> 00:01:23,219
+A break of structure on M5: on the way
+down, price keeps making lower highs.
+
+26
+00:01:23,333 --> 00:01:27,024
+When it breaks above the last one,
+the drop on that timeframe is over.
+
+27
+00:01:27,633 --> 00:01:31,077
+Any of them, on M15 or M5,
+means price is reacting.
+
+28
+00:01:31,277 --> 00:01:33,863
+And if price doesn't react? Don't chase it.
+
+29
+00:01:33,863 --> 00:01:36,570
+Let the zone go and wait for the next report.
+
+30
+00:01:36,570 --> 00:01:39,638
+A missed trade costs you
+nothing. A forced one can.
+
+31
+00:01:39,838 --> 00:01:41,440
+Let price show its hand.
+

@@ -1,0 +1,138 @@
+1
+00:00:00,150 --> 00:00:03,401
+Rechazo en la zona: qué
+buscar cuando llega el precio.
+
+2
+00:00:03,601 --> 00:00:07,892
+El precio llegó a la zona. El
+primer toque no es la entrada:
+
+3
+00:00:07,892 --> 00:00:12,898
+espera un rechazo. Puedes verlo en
+M15, o bajar a M5 para verlo antes.
+
+4
+00:00:13,098 --> 00:00:16,441
+Una pin bar: una mecha larga dentro
+de la zona y un cuerpo chico.
+
+5
+00:00:16,441 --> 00:00:19,835
+Los vendedores empujaron, y los
+compradores devolvieron el precio.
+
+6
+00:00:20,035 --> 00:00:21,122
+Una vela envolvente:
+
+7
+00:00:21,122 --> 00:00:25,469
+su cuerpo cubre por completo al de la
+vela anterior, en la dirección de la zona.
+
+8
+00:00:25,469 --> 00:00:26,936
+El control cambió de manos.
+
+9
+00:00:27,136 --> 00:00:28,341
+Una barrida de liquidez:
+
+10
+00:00:28,341 --> 00:00:33,814
+el precio rompe un mínimo reciente dentro de la zona,
+se lleva los stops que había debajo y vuelve enseguida.
+
+11
+00:00:33,814 --> 00:00:35,973
+Lo que parecía una ruptura era una barrida.
+
+12
+00:00:36,173 --> 00:00:37,201
+Una falsa ruptura:
+
+13
+00:00:37,201 --> 00:00:41,083
+el precio sale de la zona, pero el
+cuerpo de la vela cierra adentro.
+
+14
+00:00:41,083 --> 00:00:44,166
+La ruptura no se sostuvo, y
+eso también es un rechazo.
+
+15
+00:00:44,366 --> 00:00:46,674
+Un Fair Value Gap u Order Block nuevo:
+
+16
+00:00:46,674 --> 00:00:52,079
+después del giro, el precio se aleja rápido
+y deja uno atrás, en la dirección de la zona.
+
+17
+00:00:52,079 --> 00:00:53,719
+Están entrando compradores.
+
+18
+00:00:53,919 --> 00:00:56,668
+Estos son los más comunes, pero no los únicos.
+
+19
+00:00:57,383 --> 00:01:02,311
+Un doble piso: el precio prueba la zona, rebota
+y vuelve para una segunda prueba.
+
+20
+00:01:02,483 --> 00:01:07,689
+El segundo mínimo aguanta en el primero o más arriba.
+Los vendedores lo intentaron dos veces y no pudieron bajarlo.
+
+21
+00:01:08,183 --> 00:01:12,407
+Una morning star: una vela bajista fuerte,
+después una chica que duda,
+
+22
+00:01:12,403 --> 00:01:16,286
+y luego una vela alcista fuerte que cierra
+por encima de la mitad de la primera.
+
+23
+00:01:16,433 --> 00:01:17,799
+El impulso acaba de cambiar.
+
+24
+00:01:18,333 --> 00:01:23,219
+Una ruptura de estructura en M5: en la bajada,
+el precio va marcando máximos cada vez más bajos.
+
+25
+00:01:23,333 --> 00:01:27,024
+Cuando rompe por encima del último,
+la caída en esa temporalidad terminó.
+
+26
+00:01:27,633 --> 00:01:31,077
+Cualquiera de ellos, en M15 o en M5,
+significa que el precio está reaccionando.
+
+27
+00:01:31,277 --> 00:01:33,854
+¿Y si el precio no reacciona? No lo persigas.
+
+28
+00:01:33,854 --> 00:01:36,374
+Deja ir la zona y espera el próximo reporte.
+
+29
+00:01:36,374 --> 00:01:39,638
+Un trade que no tomas no te
+cuesta nada. Uno forzado, sí.
+
+30
+00:01:39,838 --> 00:01:41,440
+Deja que el precio muestre sus cartas.
+
