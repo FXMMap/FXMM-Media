@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}
+*{margin:0;box-sizing:border-box}body{width:1280px;font-family:P}
+.t{position:relative;width:1280px;height:720px;overflow:hidden;background:#0D182E}
+.wp{position:absolute;left:470px;top:0;width:810px;height:720px;background:#fff}
+.img{position:absolute;left:700px;top:60px;width:540px;height:600px;border-radius:16px;background-size:1088px 612px;background-repeat:no-repeat;box-shadow:0 20px 50px rgba(13,24,46,.25)}
+.fd{position:absolute;left:470px;top:0;width:300px;height:720px;background:linear-gradient(90deg,rgba(13,24,46,1.000) 0.0%,rgba(13,24,46,0.999) 4.2%,rgba(13,24,46,0.994) 8.3%,rgba(13,24,46,0.982) 12.5%,rgba(13,24,46,0.959) 16.7%,rgba(13,24,46,0.927) 20.8%,rgba(13,24,46,0.883) 25.0%,rgba(13,24,46,0.829) 29.2%,rgba(13,24,46,0.765) 33.3%,rgba(13,24,46,0.693) 37.5%,rgba(13,24,46,0.616) 41.7%,rgba(13,24,46,0.535) 45.8%,rgba(13,24,46,0.453) 50.0%,rgba(13,24,46,0.373) 54.2%,rgba(13,24,46,0.296) 58.3%,rgba(13,24,46,0.226) 62.5%,rgba(13,24,46,0.163) 66.7%,rgba(13,24,46,0.110) 70.8%,rgba(13,24,46,0.068) 75.0%,rgba(13,24,46,0.037) 79.2%,rgba(13,24,46,0.016) 83.3%,rgba(13,24,46,0.005) 87.5%,rgba(13,24,46,0.000) 91.7%,rgba(13,24,46,0.000) 95.8%,rgba(13,24,46,0.000) 100.0%)}
+.nz{position:absolute;left:440px;top:0;width:360px;height:720px;opacity:.07;mix-blend-mode:overlay}
+.k{position:absolute;left:56px;top:62px;font-family:M;font-weight:500;letter-spacing:.26em;font-size:22px;color:#9FB2D6;text-transform:uppercase}
+.n{position:absolute;left:52px;top:100px;font-family:M;font-weight:700;font-size:150px;line-height:1;color:#fff}
+h1 b{color:#62A5F4}
+h1{position:absolute;left:56px;top:290px;width:400px;font-size:66px;line-height:1.04;letter-spacing:-.015em;color:#fff}
+.n.w{font-size:120px;top:118px;letter-spacing:-.02em}
+.lg{position:absolute;left:56px;bottom:52px;height:38px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/></filter></svg>
+<script>
+const V=[
+['00','v00',0,'00','How<br>FXMM<br><b>works</b>','FXMM Education'],
+['01','v01',400,'01','Prepare<br>your<br><b>chart</b>','FXMM Education'],
+['02','v02',300,'02','Check<br>your<br><b>H1</b>','FXMM Education'],
+['03','v03',350,'03','Rejection<br><b>at the</b><br><b>zone</b>','FXMM Education'],
+['04','v04',0,'04','Size it<br>to the<br><b>zone</b>','FXMM Education'],
+['05','v05',0,'05','After<br>the<br><b>entry</b>','FXMM Education'],
+['06','v06',0,'06','Positive vs<br><b>negative</b><br><b>gamma</b>','FXMM Education']];
+let h='';
+for(const [id,img,x,n,t,k] of V)h+=`<div class="t" id="X_${id}"><div class="wp"></div><div class="img" style="background-image:url(fr/${img.replace('v','u')}.jpg);background-position:-${Math.round(x*0.85)+155}px -6px"></div><div class="fd"></div><svg class="nz" style="display:none"><rect width="100%" height="100%" filter="url(#g)"/></svg><div class="k">${k}</div><div class="n ${n.length>2?'w':''}">${n}</div><h1>${t}</h1><img class="lg" src="logoW.png"></div>`;
+document.body.innerHTML=h;
+</script></body></html>
