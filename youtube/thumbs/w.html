@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}
+*{margin:0;box-sizing:border-box}body{width:1280px;font-family:P}
+.t{position:relative;width:1280px;height:720px;overflow:hidden;color:#0D182E}
+.bg{position:absolute;inset:0}
+.img{position:absolute;right:0;top:0;width:820px;height:720px;background-size:cover;background-position:center}
+.k{position:absolute;left:64px;top:84px;font-family:M;font-weight:500;letter-spacing:.28em;font-size:22px;color:#14306A}
+.n{position:absolute;left:64px;top:140px;font-family:M;font-weight:700;font-size:64px;color:#0D182E;opacity:.22}
+h1{position:absolute;left:64px;top:240px;width:500px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
+h1 b{color:#14306A}
+.lg{position:absolute;left:64px;bottom:64px;height:40px}
+</style></head><body><div id="root"></div><script>
+const V=[['01','c01.jpg','Prepare your <b>chart</b>'],['03','c03.jpg','Rejection <b>at the zone</b>'],['06','c06.jpg','Positive vs negative <b>gamma</b>']];
+const G={
+ a:['linear-gradient(90deg,#F7F6F2 0%,#F7F6F2 38%,#C9D3E3 50%,#3C5A8C 64%,#0D182E 80%)','linear-gradient(90deg,transparent 55%,#000 78%)'],
+ b:['linear-gradient(90deg,#F7F6F2 0%,#F7F6F2 30%,#DCE3EE 42%,#7D93B8 55%,#1C3566 70%,#0D182E 86%)','linear-gradient(90deg,transparent 52%,#000 82%)'],
+ c:['linear-gradient(90deg,#F7F6F2 0%,#F7F6F2 44%,#AFC0DA 52%,#14306A 60%,#0D182E 70%)','linear-gradient(90deg,transparent 58%,#000 70%)']};
+let h='';for(const g in G)for(const [n,img,t] of V)h+=`<div class="t" id="W${g}${n}"><div class="bg" style="background:${G[g][0]}"></div><div class="img" style="background-image:url(${img});-webkit-mask-image:${G[g][1]}"></div><div class="k">FXMM EDUCATION</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;
+document.getElementById('root').innerHTML=h;
+</script></body></html>
