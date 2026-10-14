@@ -30,6 +30,29 @@
 .C h1{position:absolute;left:64px;top:240px;width:500px;font-size:68px;line-height:1.02;letter-spacing:-.01em}
 .C h1 b{color:#0060C7}
 .C .lg{position:absolute;left:64px;bottom:64px;height:40px}
+
+.D{background:#F7F6F2;color:#0D182E}
+.D .img{position:absolute;right:0;top:0;width:820px;height:720px;background-size:cover;background-position:center;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 45%);}
+.D .k{position:absolute;left:64px;top:84px;color:#0060C7}
+.D .n{position:absolute;left:64px;top:140px;font-family:M;font-weight:700;font-size:64px;color:#0D182E;opacity:.25}
+.D h1{position:absolute;left:64px;top:240px;width:520px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
+.D h1 b{color:#0060C7}
+.D .lg{position:absolute;left:64px;bottom:64px;height:40px}
+.E{background:#F7F6F2;color:#0D182E}
+.E .img{position:absolute;right:40px;top:60px;width:700px;height:600px;background-size:cover;background-position:center;-webkit-mask-image:radial-gradient(ellipse 60% 62% at 55% 50%,#000 55%,transparent 100%)}
+.E .k{position:absolute;left:64px;top:84px;color:#0060C7}
+.E .n{position:absolute;left:64px;top:140px;font-family:M;font-weight:700;font-size:64px;color:#0D182E;opacity:.25}
+.E h1{position:absolute;left:64px;top:240px;width:520px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
+.E h1 b{color:#0060C7}
+.E .lg{position:absolute;left:64px;bottom:64px;height:40px}
+
+.F{background:#F7F6F2;color:#0D182E}
+.F .img{position:absolute;right:0;top:0;width:860px;height:720px;background-size:cover;background-position:center;filter:invert(1) hue-rotate(180deg) contrast(1.15);mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 40%)}
+.F .k{position:absolute;left:64px;top:84px;color:#0060C7}
+.F .n{position:absolute;left:64px;top:140px;font-family:M;font-weight:700;font-size:64px;color:#0D182E;opacity:.25}
+.F h1{position:absolute;left:64px;top:240px;width:520px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
+.F h1 b{color:#0060C7}
+.F .lg{position:absolute;left:64px;bottom:64px;height:40px}
 </style></head><body>
 <script>
 const V=[['01','c01.jpg','Prepare your <b>chart</b>'],['03','c03.jpg','Rejection <b>at the zone</b>'],['06','c06.jpg','Positive vs negative <b>gamma</b>']];
@@ -39,5 +62,6 @@ for(const [n,img,t] of V){
  h+=`<div class="t B" id="B${n}"><div class="img" style="background-image:url(${img})"></div><div class="sh"></div><div class="tag">EDUCATION ${n}</div><h1>${t}</h1><img class="lg" src="logoW.png"></div>`;
  h+=`<div class="t C" id="C${n}"><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><div class="img" style="background-image:url(${img})"></div><img class="lg" src="logoD.png"></div>`;
 }
+for(const [n,img,t] of V){for(const S of ['D','E','F']) h+=`<div class="t ${S}" id="${S}${n}"><div class="img" style="background-image:url(${img})"></div><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;}
 document.body.innerHTML=h;
 </script></body></html>
