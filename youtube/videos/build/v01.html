@@ -14,79 +14,59 @@ html,body{margin:0;background:#0a1224}canvas{display:block}
 const SER=series([[0,1.0968],[30,1.0984],[60,1.0996],[75,1.1001],[120,1.0968],[150,1.0956],[175,1.0971],[205,1.0950],[235,1.0941],[262,1.0934],[300,1.0928]],101);
 const ZT=1.09024,ZB=1.08724;
 const LV=[[1.09051,'Gamma Flip'],[1.08870,'CME Volume Node'],[1.08738,'Put Cluster']];
-// camera: [t, pmin, pmax]
-const CAM=[[0,1.0918,1.1012],[7.6,1.0918,1.1012],[8.5,1.0852,1.1004],[60,1.0852,1.1004]];
-// last visible candle index over time (streaming = motion)
-const LI=[[0,150],[3.2,176],[7.7,186],[13.4,206],[21,226],[24.3,236],[48.4,247],[60,250]];
-function chartScene(t,o={}){const X0=o.x0;
- const cam=lerpK(t,CAM),L=lerpK(t,LI);
- view(cam[0],cam[1]);
- background('M15');grid();
- drawSeries(SER,L,{sp:19,w:12,x0:X0});
+const L=[1.4, 5.194, 9.039, 12.185, 15.068, 19.29, 22.594, 27.786, 32.829, 36.285, 40.187, 44.444, 51.32, 57.615],D=[2.244, 2.895, 1.496, 1.933, 2.872, 2.354, 4.242, 3.293, 2.506, 2.952, 3.307, 5.926, 5.345, 2.385],BODY=61.2;
+const S1=L[1]-0.6,S2=L[3]-0.5,S4=L[8]-0.3;
+const CAM=[[0,1.0918,1.1012],[S2,1.0918,1.1012],[S2+0.9,1.0852,1.1004],[200,1.0852,1.1004]];
+const LI=[[0,150],[S1,168],[S2,180],[L[5],192],[L[7],206],[S4,216],[BODY,232],[200,236]];
+function chartScene(t,o={}){const cam=lerpK(t,CAM),Li=lerpK(t,LI);view(cam[0],cam[1]);background('M15');grid();
+ drawSeries(SER,Li,{sp:19,w:12,x0:o.x0});
  if(o.zone) zoneBand(ZT,ZB,o.zone);
- (o.levels||[0,0,0]).forEach((a,i)=>a>0&&level(LV[i][0],LV[i][1],a,o.hl?o.hl[i]:0));
- return L;
-}
+ (o.levels||[0,0,0]).forEach((a,i)=>a>0&&level(LV[i][0],LV[i][1],a,o.hl?o.hl[i]:0));}
 window.draw=function(T){
  X.clearRect(0,0,1920,1080);
- // ---------- S0 opening (0-3.1): live chart + kinetic title ----------
- if(T<3.25){
+ if(T<S1){
   chartScene(T,{x0:1010});
-  const a=ramp(T,0.05,.45)*(1-ramp(T,2.75,.35));
-  // left vignette for legibility
-  X.globalAlpha=a*.9;const g=X.createLinearGradient(0,0,1100,0);g.addColorStop(0,'rgba(9,16,32,.96)');g.addColorStop(.6,'rgba(9,16,32,.75)');g.addColorStop(1,'rgba(9,16,32,0)');X.fillStyle=g;X.fillRect(0,0,1920,1080);X.globalAlpha=1;
-  kicker('FXMM EDUCATION · 01',120,330,ramp(T,0.1)*(1-ramp(T,2.75,.35)));
-  bigLine('Prepare your chart',120,430,104,'#fff',ramp(T,0.15,.5),(1-ramp(T,0.15,.5))*60,1-ramp(T,2.75,.35));
-  bigLine('before price gets there.',120,545,72,BLUE_T,ramp(T,1.0,.5),(1-ramp(T,1.0,.5))*60,1-ramp(T,2.75,.35));
-  if(T>2.9) fadeTo(T,2.9,3.25);
-  return;
- }
- // ---------- S1 report + levels to copy (3.1-7.8) ----------
- if(T<7.85){
-  background(null);
-  const t=T;
-  const ca=ramp(t,3.15,.5),pa=ramp(t,3.45,.5);
+  const out=1-ramp(T,L[0]+D[0]+0.5,.45);
+  X.globalAlpha=.9*ramp(T,0,.4)*out;const g=X.createLinearGradient(0,0,1100,0);g.addColorStop(0,'rgba(9,16,32,.96)');g.addColorStop(.6,'rgba(9,16,32,.75)');g.addColorStop(1,'rgba(9,16,32,0)');X.fillStyle=g;X.fillRect(0,0,1920,1080);X.globalAlpha=1;
+  kicker('FXMM EDUCATION · 01',120,330,ramp(T,0.2)*out);
+  bigLine('Prepare your chart',120,430,104,'#fff',ramp(T,0.4,.6),(1-ramp(T,0.4,.6))*60,out);
+  bigLine('before price gets there.',120,545,72,BLUE_T,ramp(T,L[0]+0.9,.6),(1-ramp(T,L[0]+0.9,.6))*60,out);
+  if(T>S1-0.45) fadeTo(T,S1-0.45,S1);
+  return;}
+ if(T<S2){
+  background(null);const t=T;
+  const ca=ramp(t,L[1]-0.3,.6),pa=ramp(t,L[1]+0.3,.6);
   X.globalAlpha=ca;X.drawImage(IM.card,120-(1-ca)*80,200,760,697);X.globalAlpha=1;
-  copyPanel(980+(1-pa)*80,200,pa,[[6.05,0],[6.55,1],[7.0,2],[7.4,3]],t);
-  if(t<3.4) fadeFrom(t,3.25,3.4);
-  if(t>7.55) fadeTo(t,7.55,7.85);
-  return;
- }
- // ---------- S2/S3 chart: mark zone, levels, alert (7.85-24.27) ----------
- if(T<24.267){
-  const z=ramp(T,8.3,.8);
-  chartScene(T,{zone:{top:ramp(T,8.2,.6),bot:ramp(T,8.8,.6),fill:ramp(T,9.3,.6),tags:ramp(T,9.0,.4)},levels:[ramp(T,10.6,.6),ramp(T,11.2,.6),ramp(T,11.8,.6)]});
-  // alert on the top edge (13.9)
-  const ab=ramp(T,14.2,.45);
-  bell(ZT,ab,T);
-  // platform notification (18.6 - 24)
-  notif(1180,170,ramp(T,18.6,.5),T,'Your platform · Price alert','EUR/USD is nearing your zone','Alert · 1.09024');
-  // "Not FXMM" caption during line 7 start
-  callout(1180,380,'FXMM doesn’t send it. Your platform does.',ramp(T,17.2,.4)*(1-ramp(T,20.9,.4)),{f:'400 26px P',c:'rgb(160,200,250)'});
-  if(T<8.1) fadeFrom(T,7.85,8.1);
-  return;
- }
- // ---------- S4 insert: what each level means (24.27-48.47) ----------
- if(T<48.47){
-  const t=T-24.267,out=1-ramp(t,23.7,.5);
-  const dim=ramp(t,0.2,.6)*(1-ramp(t,15.4,.6));
-  const e=ramp(t,2.9)*(1-ramp(t,5.9))*out;
-  const all=ramp(t,6.1)*(1-ramp(t,9.3))+ramp(t,18.8)*(1-ramp(t,21.0));
-  const v=ramp(t,11.8)*(1-ramp(t,15.4)),pc=ramp(t,13.2)*(1-ramp(t,15.4)),gf=ramp(t,14.4)*(1-ramp(t,15.4));
+  copyPanel(980+(1-pa)*80,200,pa,[[L[2]+0.2,0],[L[2]+0.8,1],[L[2]+1.4,2],[L[2]+2.0,3]],t);
+  if(t<S1+0.3) fadeFrom(t,S1,S1+0.3);
+  if(t>S2-0.35) fadeTo(t,S2-0.35,S2);
+  return;}
+ if(T<S4){
+  chartScene(T,{zone:{top:ramp(T,L[3]+0.3,.7),bot:ramp(T,L[3]+0.9,.7),fill:ramp(T,L[3]+1.4,.6),tags:ramp(T,L[3]+1.1,.4)},levels:[ramp(T,L[4]+0.2,.7),ramp(T,L[4]+0.8,.7),ramp(T,L[4]+1.4,.7)]});
+  bell(ZT,ramp(T,L[5]+1.0,.5),T);
+  notif(1180,170,ramp(T,L[6]+2.9,.5),T,'Your platform · Price alert','EUR/USD is nearing your zone','Alert · 1.09024');
+  callout(1180,380,'FXMM doesn\u2019t send it. Your platform does.',ramp(T,L[6]+0.3,.4)*(1-ramp(T,L[7]-0.2,.4)),{f:'400 26px P',c:'rgb(160,200,250)'});
+  if(T<S2+0.3) fadeFrom(T,S2,S2+0.3);
+  if(T>S4-0.3) fadeTo(T,S4-0.3,S4);
+  return;}
+ if(T<BODY){
+  const t=T,out=1-ramp(t,BODY-0.6,.5);
+  const dim=ramp(t,L[8],.6)*(1-ramp(t,L[12]-0.3,.6));
+  const e=ramp(t,L[9])*(1-ramp(t,L[10]-0.3))*out;
+  const all=ramp(t,L[10])*(1-ramp(t,L[11]-0.2))+ramp(t,L[12]+3.3)*(1-ramp(t,L[13]-0.2));
+  const sh=L[12]-0.3,v=ramp(t,L[11]+2.3)*(1-ramp(t,sh)),pc=ramp(t,L[11]+3.7)*(1-ramp(t,sh)),gf=ramp(t,L[11]+4.9)*(1-ramp(t,sh));
   chartScene(T,{zone:{top:1,bot:1,fill:1,tags:1,glow:e},levels:[1,1,1],hl:[Math.max(all,gf)*out,Math.max(all,v)*out,Math.max(all,pc)*out]});
   bell(ZT,1,T);
-  // dim candles to focus on the zone area
   X.globalAlpha=dim*.6;X.fillStyle='rgb(9,16,32)';X.fillRect(110,120,1500,Y(1.0915)-120);X.globalAlpha=1;
-  callout(150,Y(ZT)+42,'Where the zone starts · 1.09024',ramp(t,3.0)*(1-ramp(t,5.9))*out,{f:'500 28px P'});
-  callout(560,Y(ZB)-42,'Where it ends · 1.08724',ramp(t,4.4)*(1-ramp(t,5.9))*out,{f:'500 28px P'});
+  callout(150,Y(ZT)+42,'Where the zone starts · 1.09024',ramp(t,L[9]+0.3)*(1-ramp(t,L[10]-0.3))*out,{f:'500 28px P'});
+  callout(560,Y(ZB)-42,'Where it ends · 1.08724',ramp(t,L[9]+1.6)*(1-ramp(t,L[10]-0.3))*out,{f:'500 28px P'});
   callout(1100,(Y(1.08870)+Y(1.08738))/2,'Institutional data',Math.max(v,pc,gf)*out,{f:'500 28px P',c:'rgb(150,195,245)',align:'right'});
-  const ap=ramp(t,15.7)*(1-ramp(t,21.0))*out;pulse(ZT,ap,t-15.7);
-  const f=ramp(t,21.3,.5)*out;
+  pulse(ZT,ramp(t,L[12])*(1-ramp(t,L[13]-0.2))*out,t-L[12]);
+  const f=ramp(t,L[13]+0.2,.5)*out;
   if(f>0){X.globalAlpha=f;X.font='600 52px P';X.textBaseline='middle';const a1='Then wait for a ',a2='rejection.',w1=X.measureText(a1).width,w2=X.measureText(a2).width,sx=860-(w1+w2)/2;X.fillStyle='#fff';X.fillText(a1,sx,960);X.fillStyle=BLUE_T;X.fillText(a2,sx+w1,960);X.globalAlpha=1}
-  if(t>23.9) fadeTo(t,23.9,24.2);
-  return;
- }
- // ---------- end card ----------
- endCard(T-48.467,'Your chart, ready before price gets there.');
+  if(t<S4+0.3) fadeFrom(t,S4,S4+0.3);
+  if(t>BODY-0.35) fadeTo(t,BODY-0.35,BODY);
+  return;}
+ endCard(T-BODY,'Your chart, ready before price gets there.');
 };
 </script></body></html>

@@ -1,0 +1,66 @@
+1
+00:00:01,400 --> 00:00:03,894
+Prepara tu gráfico antes
+de que llegue el precio.
+
+2
+00:00:05,194 --> 00:00:08,339
+Cada reporte trae la zona y sus niveles clave.
+
+3
+00:00:09,039 --> 00:00:10,785
+Cópialos desde tu dashboard.
+
+4
+00:00:12,185 --> 00:00:14,368
+Marca la zona con sus dos precios.
+
+5
+00:00:15,068 --> 00:00:18,190
+Suma los niveles clave. Ahí
+puede empezar la reacción.
+
+6
+00:00:19,290 --> 00:00:21,894
+Pon una alerta en el borde
+que el precio toca primero.
+
+7
+00:00:22,594 --> 00:00:27,086
+FXMM no te avisa cuando
+llega: tu plataforma sí.
+
+8
+00:00:27,786 --> 00:00:31,329
+Ya no tienes que mirar la pantalla
+todo el día. La alerta te avisa.
+
+9
+00:00:32,829 --> 00:00:35,585
+Cada nivel de tu gráfico
+está ahí por una razón.
+
+10
+00:00:36,285 --> 00:00:39,487
+Los dos bordes muestran dónde empieza
+y dónde termina la zona.
+
+11
+00:00:40,187 --> 00:00:43,744
+Los niveles clave muestran dónde es más
+probable que empiece una reacción.
+
+12
+00:00:44,444 --> 00:00:50,620
+Salen de datos institucionales: un CME Volume Node,
+un options cluster o el gamma flip.
+
+13
+00:00:51,320 --> 00:00:56,915
+Así, cuando suena la alerta, no empiezas de cero.
+Todo ya está en tu gráfico.
+
+14
+00:00:57,615 --> 00:01:00,250
+Solo queda esperar un rechazo.
+
