@@ -1,0 +1,49 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:P;src:url(poppins-latin-900-normal.woff2);font-weight:900}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}
+*{margin:0;box-sizing:border-box}body{width:1280px;font-family:P}
+.t{position:relative;width:1280px;height:720px;overflow:hidden}
+.img{background-size:cover;background-position:center}
+.k{font-family:M;font-weight:500;letter-spacing:.26em;font-size:22px;text-transform:uppercase}
+
+/* X — corte limpio: panel blanco sólido izq / video der, sin degradé */
+.X{background:#0D182E}
+.X .img{position:absolute;left:520px;top:0;width:760px;height:720px;filter:brightness(1.1)}
+.X .pn{position:absolute;left:0;top:0;width:520px;height:720px;background:#fff}
+.X .ln{position:absolute;left:520px;top:0;width:10px;height:720px;background:#0D182E}
+.X .k{position:absolute;left:56px;top:62px;color:#14306A}
+.X .n{position:absolute;left:52px;top:100px;font-family:M;font-weight:700;font-size:150px;line-height:1;color:#0D182E}
+.X h1{position:absolute;left:56px;top:300px;width:430px;font-size:66px;line-height:1.02;letter-spacing:-.015em;color:#0D182E}
+.X h1 b{color:#0D182E;box-shadow:inset 0 -14px 0 #C9DBF5}
+.X .lg{position:absolute;left:56px;bottom:52px;height:38px}
+
+/* Y — video a sangre + franja blanca inferior (estilo editorial) */
+.Y{background:#0D182E}
+.Y .img{position:absolute;inset:0 0 230px 0;background-position:center 55%;filter:brightness(1.15)}
+.Y .tag{position:absolute;left:56px;top:52px;background:#0D182E;color:#fff;font-family:M;font-weight:700;font-size:24px;padding:12px 20px;letter-spacing:.14em;border:2px solid #fff}
+.Y .bd{position:absolute;left:0;right:0;bottom:0;height:230px;background:#fff;border-top:8px solid #0D182E}
+.Y h1{position:absolute;left:56px;bottom:48px;width:880px;font-size:72px;line-height:1;letter-spacing:-.02em;color:#0D182E;display:flex;align-items:center;height:150px}
+.Y .lg{position:absolute;right:56px;bottom:78px;height:40px}
+
+/* Z — tipográfico navy: número gigante, ventana al video */
+.Z{background:#0A1426;color:#fff}
+.Z .n{position:absolute;left:30px;top:-60px;font-family:P;font-weight:900;font-size:520px;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:3px rgba(255,255,255,.18)}
+.Z .img{position:absolute;right:56px;top:56px;width:620px;height:420px;border:6px solid #fff;filter:brightness(1.12)}
+.Z .k{position:absolute;left:60px;top:440px;color:#9FB2D6}
+.Z h1{position:absolute;left:56px;top:482px;width:900px;font-size:76px;line-height:1;letter-spacing:-.02em}
+.Z .rule{position:absolute;left:60px;top:414px;width:80px;height:6px;background:#fff}
+.Z .lg{position:absolute;right:56px;bottom:52px;height:40px}
+</style></head><body>
+<script>
+const V=[['01','c01.jpg','Prepare your chart'],['03','c03.jpg','Rejection at the zone'],['06','c06.jpg','Positive vs negative gamma']];
+let h='';
+for(const [n,img,t] of V){
+ h+=`<div class="t X" id="X${n}"><div class="img" style="background-image:url(${img})"></div><div class="pn"></div><div class="ln"></div><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;
+ h+=`<div class="t Y" id="Y${n}"><div class="img" style="background-image:url(${img})"></div><div class="tag">EDUCATION ${n}</div><div class="bd"></div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;
+ h+=`<div class="t Z" id="Z${n}"><div class="n">${n}</div><img class="lg" src="logoW.png"><div class="img" style="background-image:url(${img})"></div><div class="rule"></div><div class="k">FXMM Education · ${n}</div><h1>${t}</h1></div>`;
+}
+document.body.innerHTML=h;
+</script></body></html>
