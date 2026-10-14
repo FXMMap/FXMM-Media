@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-300-normal.woff2);font-weight:300}@font-face{font-family:P;src:url(poppins-latin-400-normal.woff2);font-weight:400}@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+html,body{margin:0;background:#0a1224}canvas{display:block}</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="engine.js"></script><script>
+const TLJ={"L": [1.4, 7.819, 18.698, 32.471, 44.901, 55.372, 68.527], "D": [5.469, 9.479, 12.373, 11.029, 9.072, 11.755, 4.117], "body": 72.844, "total": 76.444};const L=TLJ.L,D=TLJ.D;const x0=170,sp=34,w=20,XI=i=>x0+i*sp;
+const r0=seeded(5);const POSC=[];for(let i=0;i<40;i++)POSC.push(1.0905+0.00085*Math.sin(i/2.1)+(r0()-.5)*0.00018);
+const POS=buildC(POSC,1.0905,5,{});
+const NEGC=[];let p=1.0918;for(let i=0;i<40;i++){p+= (i%6==5? 0.0004: -0.0002-i*0.000004)+(r0()-.5)*0.0001;NEGC.push(p)}
+const NEG=buildC(NEGC,1.0920,7,{});
+const FLC=[];for(let i=0;i<20;i++)FLC.push(1.0909+0.00035*Math.sin(i/1.6)+(r0()-.5)*0.0001);p=FLC[19];for(let i=0;i<18;i++){p-=0.00026+i*0.000012;FLC.push(p)}
+const FL=buildC(FLC,1.0909,9,{});
+const SCN=[];const S=(a,b,f)=>SCN.push([a,b,f]);const st=i=>L[i]-0.45;
+function arrowV(x,y,dir,col,a,txt){if(a<=0)return;X.globalAlpha=a;X.strokeStyle=col;X.fillStyle=col;X.lineWidth=3;const l=46;X.beginPath();X.moveTo(x,y);X.lineTo(x,y+dir*l);X.stroke();X.beginPath();X.moveTo(x-9,y+dir*(l-14));X.lineTo(x+9,y+dir*(l-14));X.lineTo(x,y+dir*(l+2));X.closePath();X.fill();
+ if(txt){X.font='600 24px P';X.textAlign='center';X.textBaseline='middle';X.fillText(txt,x,y-dir*20);X.textAlign='left'}X.globalAlpha=1}
+const RED='rgb(235,120,120)',GRN='rgb(110,210,150)';
+S(0,st(1),T=>{view(1.0885,1.0925);background(null);grid();X.save();X.beginPath();X.rect(1260,0,660,1080);X.clip();drawFixed(POS,1100,sp,w,lerpK(T,[[0,8],[st(1),26]]));X.restore();
+ const out=1-ramp(T,st(1)-0.6,.45);X.globalAlpha=.92*out;const g=X.createLinearGradient(0,0,1300,0);g.addColorStop(0,'rgba(9,16,32,.97)');g.addColorStop(.7,'rgba(9,16,32,.8)');g.addColorStop(1,'rgba(9,16,32,0)');X.fillStyle=g;X.fillRect(0,0,1920,1080);X.globalAlpha=1;
+ kicker('FXMM EDUCATION · 06',120,300,ramp(T,0.2)*out);bigLine('Positive and',120,400,96,'#fff',ramp(T,0.4,.6),(1-ramp(T,0.4,.6))*60,out);bigLine('negative gamma',120,505,96,BLUE_T,ramp(T,0.7,.6),(1-ramp(T,0.7,.6))*60,out);
+ bigLine('Why the market sometimes slows down,',120,620,44,'rgb(200,210,225)',ramp(T,L[0]+2.2,.6),0,out);bigLine('and sometimes speeds up.',120,680,44,'rgb(200,210,225)',ramp(T,L[0]+3.6,.6),0,out)});
+function box(x,y,txt,a){if(a<=0)return;X.globalAlpha=a;X.font='500 40px P';const w=X.measureText(txt).width+80;X.fillStyle='rgba(14,26,52,.97)';rr(x-w/2,y-50,w,100,12);X.fill();X.strokeStyle='rgba(98,165,244,.85)';X.lineWidth=2.5;X.stroke();X.fillStyle='#fff';X.textAlign='center';X.textBaseline='middle';X.fillText(txt,x,y+2);X.textAlign='left';X.globalAlpha=1}
+function harrow(x1,x2,y,col,a){if(a<=0)return;X.globalAlpha=a;X.strokeStyle=col;X.fillStyle=col;X.lineWidth=3;const xe=x1+(x2-x1)*cl(a*1.2);X.beginPath();X.moveTo(x1,y);X.lineTo(xe,y);X.stroke();const d=Math.sign(x2-x1);X.beginPath();X.moveTo(xe,y);X.lineTo(xe-d*16,y-9);X.lineTo(xe-d*16,y+9);X.closePath();X.fill();X.globalAlpha=1}
+S(st(1),st(2),T=>{const t=T-L[1];background(null);box(330,470,'Options',ramp(t,-0.3));harrow(470,700,470,'rgb(150,160,185)',ramp(t,0.6,.6));box(960,470,'Market maker',ramp(t,0.9));
+ const h=ramp(t,3.2,.6);harrow(1150,1470,445,RED,h);harrow(1470,1150,500,GRN,ramp(t,3.6,.6));label(1310,410,'sells',h,{f:'600 28px P',c:RED});label(1310,540,'buys',ramp(t,3.6),{f:'600 28px P',c:GRN});
+ box(1620,470,'Market',ramp(t,2.6));label(960,640,'To stay protected, they hedge.',ramp(t,3.0),{f:'400 34px P',c:'rgb(190,200,215)'});
+ pill('How they hedge depends on the gamma regime',960,780,ramp(t,6.6))});
+S(st(2),st(3),T=>{const t=T-L[2];view(1.0885,1.0925);background('M15');grid();level(1.0905,'Large options level',1);
+ drawFixed(POS,x0,sp,w,lerpK(t,[[-1,10],[0,10],[11,40]]));pill('Positive gamma',360,190,ramp(t,0));
+ const n=lerpK(t,[[-1,10],[0,10],[11,40]]);POS.forEach((k,i)=>{if(i>n-0.5||i<10)return;const sv=j=>Math.sin(j/2.1);const top=sv(i)>sv(i-1)&&sv(i)>=sv(i+1)&&sv(i)>0.5,bot=sv(i)<sv(i-1)&&sv(i)<=sv(i+1)&&sv(i)<-0.5;
+  if(top)arrowV(XI(i),Y(k.h)-60,1,RED,ramp(t,1.0),'sells');if(bot)arrowV(XI(i),Y(k.l)+60,-1,GRN,ramp(t,2.9),'buys')});
+ callout(1550,860,'Hedging leans against the move',ramp(t,4.4)*(1-ramp(t,6.6)),{f:'500 30px P',align:'right'});callout(1550,860,'More contained moves, near large options levels',ramp(t,6.8),{f:'500 30px P',align:'right',c:'rgb(150,195,245)'})});
+S(st(3),st(4),T=>{const t=T-L[3];view(1.0842,1.0928);background('M15');grid();
+ const n=lerpK(t,[[-1,4],[0.5,4],[10.5,40]]);drawFixed(NEG,x0,sp,w,n);pill('Negative gamma',1300,190,ramp(t,0));
+ NEG.forEach((k,i)=>{if(i>n-0.5||i<4)return;if(i%6==4){const k2=NEG[i+2]||k;arrowV(XI(i+2),Y(k2.h)-62,1,RED,ramp(t,2.6),i==10?'sells more':'')}});
+ callout(1550,860,'Hedging pushes the move',ramp(t,6.4)*(1-ramp(t,8.2)),{f:'500 30px P',align:'right'});callout(1550,860,'Faster, and wider moves',ramp(t,8.3),{f:'500 30px P',align:'right',c:'rgb(240,150,150)'})});
+S(st(4),st(5),T=>{const t=T-L[4];view(1.0850,1.0925);background('M15');grid();const yf=Y(1.0900);
+ const a=ramp(t,3.4),b=ramp(t,6.4);X.globalAlpha=.10*a;X.fillStyle=GRN;X.fillRect(PX0,PY0,PX1-PX0,yf-PY0);X.globalAlpha=.10*b;X.fillStyle=RED;X.fillRect(PX0,yf,PX1-PX0,PY1-yf);X.globalAlpha=1;
+ X.strokeStyle=BLUE_T;X.lineWidth=3;X.beginPath();X.moveTo(PX0,yf);X.lineTo(PX0+(PX1-PX0)*ramp(t,0.2,.8),yf);X.stroke();callout(PX1-10,yf-36,'Gamma flip',ramp(t,0.6),{f:'600 30px P',align:'right',c:BLUE_T});
+ drawFixed(FL,x0,sp,w,lerpK(t,[[-1,6],[0,6],[3.5,20],[6.4,20],[9,38]]));
+ label(260,yf-200,'Hedging tends to slow price down',a,{f:'500 32px P',c:GRN,align:'left'});label(260,yf+260,'Hedging tends to speed it up',b,{f:'500 32px P',c:RED,align:'left'})});
+S(st(5),L[6]-0.4,T=>{const t=T-L[5];background(null);const pa=ramp(t,0);panel(160,200,760,360,pa);
+ label(200,250,'POSITIONING & RATES',pa,{f:'700 24px M',c:BLUE_T,align:'left'});label(200,330,'Options gamma',pa,{f:'400 32px P',c:'rgb(190,200,215)',align:'left'});
+ callout(560,330,'Negative',pa,{f:'600 30px P',c:'rgb(240,150,150)'});label(200,420,'Gamma flip',pa,{f:'400 32px P',c:'rgb(190,200,215)',align:'left'});label(560,420,'1.09000 · on the chart',pa,{f:'600 30px M',align:'left'});
+ const ca=ramp(t,2.8);panel(1000,200,760,360,ca);if(ca>0){X.save();X.beginPath();X.rect(1000,200,760,360);X.clip();view(1.0868,1.0925);const sy=Y;X.translate(0,0);X.restore()}
+ label(1380,380,'Gamma flip on your chart',ca,{f:'500 32px P',c:BLUE_T});if(ca>0){X.globalAlpha=ca;X.strokeStyle=BLUE_T;X.lineWidth=3;X.setLineDash([10,8]);X.beginPath();X.moveTo(1050,450);X.lineTo(1710,450);X.stroke();X.setLineDash([]);X.globalAlpha=1}
+ label(960,680,'Positive gamma  →  more orderly moves',ramp(t,5.2),{f:'500 40px P',c:GRN});label(960,770,'Negative gamma  →  wider and sharper',ramp(t,8.4),{f:'500 40px P',c:RED})});
+window.draw=function(T){X.clearRect(0,0,1920,1080);const E=L[6]-0.4;if(T>=E){endCard(T-E,'Gamma doesn’t tell you where. It tells you how.');return}
+ for(const [a,b,f] of SCN){if(T>=a&&T<b){f(T);if(a>0&&T<a+0.3)fadeFrom(T,a,a+0.3);if(T>b-0.3)fadeTo(T,b-0.3,b);return}}};
+</script></body></html>
