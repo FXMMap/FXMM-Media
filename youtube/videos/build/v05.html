@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-300-normal.woff2);font-weight:300}@font-face{font-family:P;src:url(poppins-latin-400-normal.woff2);font-weight:400}@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+html,body{margin:0;background:#0a1224}canvas{display:block}</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="engine.js"></script><script>
+const TLJ={"L": [1.4, 6.211, 16.242, 26.614, 42.84, 53.655], "D": [3.861, 8.631, 8.971, 14.827, 9.415, 2.923], "body": 56.778, "total": 60.378};const L=TLJ.L,D=TLJ.D;const ZT=1.09024,ZB=1.08724;const x0=170,sp=40,w=24,XI=i=>x0+i*sp;
+const DOWN=[1.0918,1.0915,1.0916,1.0912,1.0910,1.0911,1.0907,1.0905,1.0906,1.0902,1.0900,1.0901];
+const BRK=buildC([...DOWN,1.0893,1.0886,1.0892,1.0896,1.0893,1.0887,1.0881,1.0876,1.0868,1.0864],1.0920,6,{13:{l:1.08800}});
+const HLD=buildC([...DOWN,1.0893,1.0886,1.0892,1.0896,1.0893,1.0890,1.0896,1.0902,1.0907,1.0911,1.0914],1.0920,6,{13:{l:1.08800},17:{l:1.08840}});
+const BE=buildC([...DOWN,1.0893,1.0886,1.0891,1.0897,1.0902,1.0906,1.0901,1.0895,1.0889,1.0893,1.0899,1.0905,1.0910,1.0915,1.0918],1.0920,12,{13:{l:1.08800},20:{l:1.08868}});
+const SER=series([[0,1.0950],[60,1.0962],[120,1.0941],[160,1.0930]],51);
+const SCN=[];const S=(a,b,f)=>SCN.push([a,b,f]);const st=i=>L[i]-0.45;
+function chartBase(tf){view(1.0858,1.0926);background(tf);grid();zoneBand(ZT,ZB,{top:1,bot:1,fill:1,tags:1});chip(tf,1480,150,true)}
+S(0,st(1),T=>{view(1.0862,1.0985);background(null);grid();X.save();X.beginPath();X.rect(1260,0,660,1080);X.clip();drawSeries(SER,lerpK(T,[[0,120],[st(1),150]]),{sp:19,w:12});X.restore();
+ const out=1-ramp(T,st(1)-0.6,.45);X.globalAlpha=.92*out;const g=X.createLinearGradient(0,0,1300,0);g.addColorStop(0,'rgba(9,16,32,.97)');g.addColorStop(.7,'rgba(9,16,32,.8)');g.addColorStop(1,'rgba(9,16,32,0)');X.fillStyle=g;X.fillRect(0,0,1920,1080);X.globalAlpha=1;
+ kicker('FXMM EDUCATION · 05',120,330,ramp(T,0.2)*out);bigLine('After the entry',120,430,104,'#fff',ramp(T,0.4,.6),(1-ramp(T,0.4,.6))*60,out);
+ bigLine('When to stay and when to get out.',120,535,52,BLUE_T,ramp(T,L[0]+1.4,.6),(1-ramp(T,L[0]+1.4,.6))*40,out)});
+// zone breaks vs holds
+S(st(1),st(2),T=>{const t=T-L[1],sw=ramp(t,5.6,.6);chartBase('M15');
+ const entry=()=>{label(XI(13),Y(1.08800)+58,'Entry',1,{f:'600 26px P',c:BLUE_T})};
+ if(sw<1){X.globalAlpha=1-sw;drawFixed(BRK,x0,sp,w,lerpK(t,[[-1,14],[0.3,14],[3.4,22]]));X.globalAlpha=1;
+  const a=ramp(t,3.0)*(1-sw);if(a>0){X.globalAlpha=a;X.strokeStyle='rgb(240,120,120)';X.lineWidth=3;X.beginPath();X.moveTo(PX0,Y(ZB));X.lineTo(PX1,Y(ZB));X.stroke();X.globalAlpha=1}
+  callout(XI(20)+30,Y(1.0866),'Closes through the zone: the idea no longer holds',a,{f:'500 28px P',c:'rgb(240,150,150)',align:'right'})}
+ if(sw>0){X.globalAlpha=sw;drawFixed(HLD,x0,sp,w,lerpK(t,[[5.6,14],[8.2,23]]));X.globalAlpha=1;callout(XI(17),Y(1.08840)+60,'Zone holds: the idea still stands',ramp(t,6.4),{f:'500 28px P',c:'rgb(150,230,180)',align:'center'})}});
+// grade guides management
+const CXL=380,CXH=1070;
+S(st(2),st(3),T=>{const t=T-L[2];background(null);label(960,220,'The grade guides how you manage it',ramp(t,-0.2),{f:'600 46px P'});
+ const la=ramp(t,1.7),ha=ramp(t,5.0);gradeCard(CXL,330,la,0,la*(1-ramp(t,5.0)),ramp(t,2.2,1));gradeCard(CXH,330,ha,2,ha,ramp(t,5.6,1));
+ label(CXL+235,800,'Keep it modest',ramp(t,2.8),{f:'500 32px P',c:BLUE_T});label(CXH+235,800,'Room to let it develop',ramp(t,6.2),{f:'500 32px P',c:BLUE_T})});
+// breakeven
+S(st(3),st(4),T=>{const t=T-L[3];chartBase('M15');drawFixed(BE,x0,sp,w,lerpK(t,[[-1,14],[0.2,14],[3.2,18],[6.2,18],[8.6,21],[10.6,21],[13.8,27]]));
+ const ey=Y(1.0893);const ea=ramp(t,0.6);if(ea>0){X.globalAlpha=ea;X.setLineDash([8,6]);X.strokeStyle='rgb(150,195,245)';X.lineWidth=2;X.beginPath();X.moveTo(XI(13),ey);X.lineTo(1500,ey);X.stroke();X.setLineDash([]);X.globalAlpha=1;label(1495,ey-24,'Breakeven',ea,{f:'500 26px P',c:'rgb(150,195,245)',align:'right'})}
+ pill('Breakeven: your call, not a rule',960,280,ramp(t,0.8)*(1-ramp(t,3.2)));pill('Our recommendation: don’t rush it',960,280,ramp(t,3.4)*(1-ramp(t,6.0)));
+ const pb=ramp(t,7.2);ring(XI(20),Y(1.08868)+16,pb,'rgb(240,150,150)');callout(XI(20)+30,Y(1.08868)+66,'Normal pullback: too early a breakeven takes you out here',pb*(1-ramp(t,10.4)),{f:'500 26px P',c:'rgb(240,170,170)'});
+ pill('Many wait until price has clearly moved their way',960,280,ramp(t,10.8))});
+// what doesn't change the plan
+S(st(4),L[5]-0.4,T=>{const t=T-L[4];background(null);label(960,250,'What doesn’t change the plan',ramp(t,0),{f:'600 46px P',c:'rgb(150,195,245)'});
+ [['A slow candle',1.8],['A normal pullback',3.0]].forEach(([s,d],i)=>{const a=ramp(t,d);label(700,380+i*90,'✕',a,{f:'600 42px P',c:'rgb(240,120,120)',align:'left'});label(770,380+i*90,s,a,{f:'400 42px P',c:'rgb(200,205,215)',align:'left'});
+  const sk=ramp(t,d+0.6,.4);if(sk>0){X.globalAlpha=a;X.font='400 42px P';const ww=X.measureText(s).width;X.strokeStyle='rgb(200,205,215)';X.lineWidth=2.5;X.beginPath();X.moveTo(770,380+i*90);X.lineTo(770+ww*sk,380+i*90);X.stroke();X.globalAlpha=1}});
+ const p=ramp(t,4.4);if(p>0){X.globalAlpha=p;X.fillStyle='rgba(255,255,255,.15)';X.fillRect(700,580,520,2);X.globalAlpha=1}
+ label(960,650,'Taking pips is part of the plan',ramp(t,4.6),{f:'400 36px P',c:'rgb(200,205,215)'});
+ label(700,760,'✓',ramp(t,7.4),{f:'700 46px P',c:'rgb(110,210,150)',align:'left'});label(770,760,'Take what the zone gives you',ramp(t,7.4),{f:'600 46px P',align:'left'})});
+window.draw=function(T){X.clearRect(0,0,1920,1080);const E=L[5]-0.4;if(T>=E){endCard(T-E,'As long as the zone holds, the idea still stands.');return}
+ for(const [a,b,f] of SCN){if(T>=a&&T<b){f(T);if(a>0&&T<a+0.3)fadeFrom(T,a,a+0.3);if(T>b-0.3)fadeTo(T,b-0.3,b);return}}};
+</script></body></html>
