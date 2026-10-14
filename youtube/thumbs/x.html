@@ -36,6 +36,24 @@
 .Z h1{position:absolute;left:56px;top:482px;width:900px;font-size:76px;line-height:1;letter-spacing:-.02em}
 .Z .rule{position:absolute;left:60px;top:414px;width:80px;height:6px;background:#fff}
 .Z .lg{position:absolute;right:56px;bottom:52px;height:40px}
+.X1{background:#fff}
+.X1 .img{position:absolute;left:480px;top:0;width:800px;height:720px;filter:brightness(1.1);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 80px)}
+.X1 .k{position:absolute;left:56px;top:62px;color:#14306A}
+.X1 .n{position:absolute;left:52px;top:100px;font-family:M;font-weight:700;font-size:150px;line-height:1;color:#0D182E}
+.X1 h1{position:absolute;left:56px;top:300px;width:430px;font-size:66px;line-height:1.02;letter-spacing:-.015em;color:#0D182E}
+.X1 .lg{position:absolute;left:56px;bottom:52px;height:38px}
+.X2{background:#fff}
+.X2 .img{position:absolute;left:440px;top:0;width:840px;height:720px;filter:brightness(1.1);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 160px)}
+.X2 .k{position:absolute;left:56px;top:62px;color:#14306A}
+.X2 .n{position:absolute;left:52px;top:100px;font-family:M;font-weight:700;font-size:150px;line-height:1;color:#0D182E}
+.X2 h1{position:absolute;left:56px;top:300px;width:430px;font-size:66px;line-height:1.02;letter-spacing:-.015em;color:#0D182E}
+.X2 .lg{position:absolute;left:56px;bottom:52px;height:38px}
+.X3{background:#fff}
+.X3 .img{position:absolute;left:380px;top:0;width:900px;height:720px;filter:brightness(1.1);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 280px)}
+.X3 .k{position:absolute;left:56px;top:62px;color:#14306A}
+.X3 .n{position:absolute;left:52px;top:100px;font-family:M;font-weight:700;font-size:150px;line-height:1;color:#0D182E}
+.X3 h1{position:absolute;left:56px;top:300px;width:430px;font-size:66px;line-height:1.02;letter-spacing:-.015em;color:#0D182E}
+.X3 .lg{position:absolute;left:56px;bottom:52px;height:38px}
 </style></head><body>
 <script>
 const V=[['01','c01.jpg','Prepare your chart'],['03','c03.jpg','Rejection at the zone'],['06','c06.jpg','Positive vs negative gamma']];
@@ -45,5 +63,6 @@ for(const [n,img,t] of V){
  h+=`<div class="t Y" id="Y${n}"><div class="img" style="background-image:url(${img})"></div><div class="tag">EDUCATION ${n}</div><div class="bd"></div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;
  h+=`<div class="t Z" id="Z${n}"><div class="n">${n}</div><img class="lg" src="logoW.png"><div class="img" style="background-image:url(${img})"></div><div class="rule"></div><div class="k">FXMM Education · ${n}</div><h1>${t}</h1></div>`;
 }
+for(const [n,img,t] of V)for(const k of ['X1','X2','X3'])h+=`<div class="t ${k}" id="${k}_${n}"><div class="img" style="background-image:url(${img})"></div><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;
 document.body.innerHTML=h;
 </script></body></html>
