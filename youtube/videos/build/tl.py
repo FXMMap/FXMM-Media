@@ -30,7 +30,12 @@ def build(name,lines,gap=0.9,extra=None,lead=0.6,tail=1.2,endcard=3.4):
         return best[1]
     for k,lang in ((1,'en'),(2,'es')):
         with open(f'{name}_{lang}.srt','w') as f:
+            n=0
             for i,(s,d) in enumerate(zip(starts,durs)):
-                f.write(f"{i+1}\n{fmt(s)} --> {fmt(s+d+0.25)}\n{wrap(lines[i][k])}\n\n")
+                cues=lines[i][k]
+                if isinstance(cues,str): cues=[(0,cues)]
+                for j,(fr,txt) in enumerate(cues):
+                    a=s+fr*d; b=s+(cues[j+1][0]*d if j+1<len(cues) else d+0.25)
+                    n+=1; f.write(f"{n}\n{fmt(a)} --> {fmt(b)}\n{wrap(txt)}\n\n")
     json.dump({'L':starts,'D':durs,'body':round(body,3),'total':round(total,3)},open(f'{name}.json','w'))
     return starts,durs,body,total

@@ -70,3 +70,16 @@ function copyPanel(x,y,a,clicks,t){if(a<=0)return;X.globalAlpha=a;X.shadowColor=
 function endCard(tt,line){X.drawImage(IM.plate0,0,0);
  const a=ramp(tt,0,.6);X.globalAlpha=a;X.drawImage(IM.logo,776,370);X.font='300 46px P';X.fillStyle='#fff';X.textAlign='center';X.textBaseline='middle';X.fillText(line,960,545);
  X.font='300 26px P';X.fillStyle='rgb(140,150,175)';X.fillText('Educational content. Not investment advice. Trading involves risk.',960,640);X.textAlign='left';X.globalAlpha=1}
+function buildC(closes,start,seed,ov={}){const r=seeded(seed);let o=start;const out=[];
+ closes.forEach((c,i)=>{let h=Math.max(o,c)+0.00004+r()*0.00008,l=Math.min(o,c)-0.00004-r()*0.00008;const v=ov[i]||{};
+  if(v.o!==undefined)o=v.o;if(v.h!==undefined)h=v.h;if(v.l!==undefined)l=v.l;out.push({o,c,h,l});o=c});return out}
+function chip(txt,x,y,on){X.font='600 24px P';const w=X.measureText(txt).width+36;X.fillStyle=on?'rgb(80,152,230)':'rgba(255,255,255,.08)';rr(x,y,w,42,6);X.fill();X.fillStyle=on?'rgb(8,18,40)':'rgb(150,160,180)';X.textBaseline='middle';X.textAlign='left';X.fillText(txt,x+18,y+22);return w}
+function tfChips(a){/* a: 0 = M15 active, 1 = H1 active */const w1=chip('M15',1390,150,a<0.5);chip('H1',1390+w1+10,150,a>=0.5)}
+function boxLabel(x1,p1,x2,p2,txt,a,col){if(a<=0)return;const y1=Y(p1),y2=Y(p2);X.globalAlpha=a;X.fillStyle=col||'rgba(91,165,252,.16)';X.fillRect(x1,Math.min(y1,y2),(x2-x1)*cl(a*1.3),Math.abs(y2-y1));X.strokeStyle=col?'rgba(255,255,255,.45)':'rgba(120,180,250,.85)';X.lineWidth=1.5;X.strokeRect(x1,Math.min(y1,y2),(x2-x1)*cl(a*1.3),Math.abs(y2-y1));
+ X.font='500 28px P';X.fillStyle='#fff';X.textAlign='center';X.textBaseline='middle';X.fillText(txt,x1+(x2-x1)/2,(y1+y2)/2);X.textAlign='left';X.globalAlpha=1}
+function ring(x,y,a,col='#fff'){if(a<=0)return;X.globalAlpha=a;X.strokeStyle=col;X.lineWidth=2.5;X.beginPath();X.arc(x,y,13,0,7);X.stroke();X.globalAlpha=1}
+function label(x,y,txt,a,o={}){if(a<=0)return;X.globalAlpha=a;X.font=o.f||'500 28px P';X.fillStyle=o.c||'#fff';X.textAlign=o.align||'center';X.textBaseline='middle';X.fillText(txt,x,y);X.textAlign='left';X.globalAlpha=1}
+function centerText(parts,y,size,a,weight=600){if(a<=0)return;X.globalAlpha=a;X.font=`${weight} ${size}px P`;X.textBaseline='middle';X.textAlign='left';const tw=parts.reduce((s,p)=>s+X.measureText(p[0]).width,0);let x=960-tw/2;parts.forEach(([t,c])=>{X.fillStyle=c;X.fillText(t,x,y);x+=X.measureText(t).width});X.globalAlpha=1}
+function panel(x,y,w,h,a){X.globalAlpha=a;X.fillStyle='rgba(12,22,44,.96)';rr(x,y,w,h,12);X.fill();X.strokeStyle='rgba(120,160,220,.35)';X.lineWidth=1.5;X.stroke();X.globalAlpha=1}
+function drawFixed(S,x0,sp,w,n){const full=Math.floor(n),f=n-full;
+ for(let i=0;i<Math.min(S.length,Math.ceil(n));i++){let k=S[i];if(i===full&&f>0){const ff=ease(f),c=k.o+(k.c-k.o)*ff;k={o:k.o,c,h:Math.max(k.o,c)+(k.h-Math.max(k.o,k.c))*ff,l:Math.min(k.o,c)-(Math.min(k.o,k.c)-k.l)*ff}}candle(x0+i*sp,k,w)}}
