@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(jetbrains-mono-latin-500-normal.woff2);font-weight:500}
+*{margin:0;box-sizing:border-box}body{width:1280px;font-family:P}
+.t{position:relative;width:1280px;height:720px;overflow:hidden;background:#F7F6F2;color:#0D182E}
+.k{position:absolute;left:64px;top:84px;font-family:M;font-weight:500;letter-spacing:.28em;font-size:22px;color:#14306A}
+.n{position:absolute;left:64px;top:140px;font-family:M;font-weight:700;font-size:64px;color:#0D182E;opacity:.22}
+h1{position:absolute;left:64px;top:240px;width:520px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
+h1 b{color:#14306A}
+.lg{position:absolute;left:64px;bottom:64px;height:40px}
+svg{position:absolute;right:0;top:0}
+</style></head><body><div id="root"></div><script>
+let seed=3;const r=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
+function candles(path,x0,dx,w){ // path: array of closes
+ let s='',p=path[0];
+ for(let i=1;i<path.length;i++){const o=p,c=path[i];const hi=Math.min(o,c)-6-r()*10,lo=Math.max(o,c)+6+r()*10;const up=c<o;
+  const x=x0+i*dx;
+  s+=`<line x1="${x+w/2}" x2="${x+w/2}" y1="${hi}" y2="${lo}" stroke="#0D182E" stroke-width="2.5"/><rect x="${x}" y="${Math.min(o,c)}" width="${w}" height="${Math.max(3,Math.abs(c-o))}" fill="${up?'#F7F6F2':'#0D182E'}" stroke="#0D182E" stroke-width="2.5"/>`;
+  p=c;}
+ return s;}
+function walk(n,start,drift,noise){let a=[start];for(let i=0;i<n;i++)a.push(a[a.length-1]+drift(i)+(r()-.5)*noise);return a}
+function zone(y1,y2,op,label){return `<rect x="560" y="${y1}" width="720" height="${y2-y1}" fill="#14306A" opacity="${op}"/><line x1="560" x2="1280" y1="${y1}" y2="${y1}" stroke="#14306A" stroke-width="3"/><line x1="560" x2="1280" y1="${y2}" y2="${y2}" stroke="#14306A" stroke-width="3"/><text x="1250" y="${y2-16}" text-anchor="end" font-family="M" font-weight="500" font-size="18" letter-spacing="3" fill="${op>.5?'#F7F6F2':'#14306A'}">ZONE OF INTEREST</text>`}
+const fade=`<defs><linearGradient id="f" x1="0" x2="1"><stop offset="0" stop-color="#F7F6F2" stop-opacity="1"/><stop offset=".55" stop-color="#F7F6F2" stop-opacity="0"/></linearGradient></defs>`;
+function v01(op){seed=5;const z=[430,520];const a=walk(22,150,i=>i<8?-4:12,22);return `<svg width="1280" height="720">${zone(z[0],z[1],op)}${candles(a,600,26,14)}<line x1="560" x2="1180" y1="${z[0]}" y2="${z[0]}" stroke="#0060C7" stroke-width="3" stroke-dasharray="10 8"/><circle cx="1180" cy="${z[0]}" r="22" fill="#14306A"/><path d="M1172 ${z[0]+6}h16l-3-4v-6a5 5 0 0 0-10 0v6z" fill="#F7F6F2"/><rect x="560" y="0" width="300" height="720" fill="url(#f)"/>${fade}</svg>`}
+function v03(op){seed=9;const z=[430,520];let a=walk(14,160,i=>17,18);a.push(z[0]+20,z[0]+5);a=a.concat(walk(7,z[0]-10,i=>-22,14).slice(1));let s=candles(a,600,28,15);const px=600+15*28+7;s+=`<line x1="${px}" x2="${px}" y1="${z[0]}" y2="${z[1]-8}" stroke="#0D182E" stroke-width="3"/>`;return `<svg width="1280" height="720">${zone(z[0],z[1],op)}${s}<rect x="560" y="0" width="300" height="720" fill="url(#f)"/>${fade}</svg>`}
+function v06(op){seed=13;const a=walk(24,170,i=>i<8?0:i*2.2,14);let s=candles(a,600,26,14);[12,17,21].forEach(i=>{const x=600+i*26+7,y=a[i]-40;s+=`<path d="M${x} ${y-30}v26m-9 -10l9 10l9 -10" stroke="#B3261E" stroke-width="3" fill="none"/>`});return `<svg width="1280" height="720"><rect x="560" y="430" width="720" height="290" fill="#14306A" opacity="${op*0.6}"/><line x1="560" x2="1280" y1="430" y2="430" stroke="#14306A" stroke-width="3" stroke-dasharray="10 8"/><text x="1250" y="470" text-anchor="end" font-family="M" font-size="18" letter-spacing="3" fill="${op>.5?'#F7F6F2':'#14306A'}">GAMMA FLIP</text>${s}<rect x="560" y="0" width="300" height="720" fill="url(#f)"/>${fade}</svg>`}
+const V=[['01',v01,'Prepare your <b>chart</b>'],['03',v03,'Rejection <b>at the zone</b>'],['06',v06,'Positive vs negative <b>gamma</b>']];
+let h='';for(const op of [.22,.5,.88])for(const [n,f,t] of V)h+=`<div class="t" id="L${Math.round(op*100)}_${n}">${f(op)}<div class="k">FXMM EDUCATION</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;
+document.getElementById('root').innerHTML=h;
+</script></body></html>

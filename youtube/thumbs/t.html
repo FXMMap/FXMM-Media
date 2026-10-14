@@ -53,6 +53,25 @@
 .F h1{position:absolute;left:64px;top:240px;width:520px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
 .F h1 b{color:#0060C7}
 .F .lg{position:absolute;left:64px;bottom:64px;height:40px}
+
+.G1,.G2,.G3{background:#F7F6F2;color:#0D182E}
+.G1 .img,.G2 .img,.G3 .img{position:absolute;right:0;top:0;width:860px;height:720px;background-size:cover;background-position:center;mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 40%)}
+.G1 .img{filter:invert(1) hue-rotate(180deg) saturate(.8) brightness(.8) contrast(1.4)}
+.G2 .img{filter:invert(1) hue-rotate(180deg) saturate(.7) brightness(.62) contrast(1.6)}
+.G3 .img{filter:invert(1) hue-rotate(180deg) saturate(.6) brightness(.48) contrast(1.8)}
+.G1 .k,.G2 .k,.G3 .k{position:absolute;left:64px;top:84px;color:#0D2A5C}
+.G1 .n,.G2 .n,.G3 .n{position:absolute;left:64px;top:140px;font-family:M;font-weight:700;font-size:64px;color:#0D182E;opacity:.25}
+.G1 h1,.G2 h1,.G3 h1{position:absolute;left:64px;top:240px;width:520px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
+.G1 h1 b{color:#0B3D91}.G2 h1 b{color:#0B2F6B}.G3 h1 b{color:#0D182E;text-decoration:underline;text-decoration-color:#0060C7;text-decoration-thickness:6px;text-underline-offset:10px}
+.G1 .lg,.G2 .lg,.G3 .lg{position:absolute;left:64px;bottom:64px;height:40px}
+
+.H{background:#F7F6F2;color:#0D182E}
+.H .img{position:absolute;right:0;top:0;width:860px;height:720px;background-size:cover;background-position:center;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 40%)}
+.H .k{position:absolute;left:64px;top:84px;color:#14306A}
+.H .n{position:absolute;left:64px;top:140px;font-family:M;font-weight:700;font-size:64px;color:#0D182E;opacity:.25}
+.H h1{position:absolute;left:64px;top:240px;width:520px;font-size:72px;line-height:1.02;letter-spacing:-.01em}
+.H h1 b{color:#14306A}
+.H .lg{position:absolute;left:64px;bottom:64px;height:40px}
 </style></head><body>
 <script>
 const V=[['01','c01.jpg','Prepare your <b>chart</b>'],['03','c03.jpg','Rejection <b>at the zone</b>'],['06','c06.jpg','Positive vs negative <b>gamma</b>']];
@@ -62,6 +81,7 @@ for(const [n,img,t] of V){
  h+=`<div class="t B" id="B${n}"><div class="img" style="background-image:url(${img})"></div><div class="sh"></div><div class="tag">EDUCATION ${n}</div><h1>${t}</h1><img class="lg" src="logoW.png"></div>`;
  h+=`<div class="t C" id="C${n}"><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><div class="img" style="background-image:url(${img})"></div><img class="lg" src="logoD.png"></div>`;
 }
-for(const [n,img,t] of V){for(const S of ['D','E','F']) h+=`<div class="t ${S}" id="${S}${n}"><div class="img" style="background-image:url(${img})"></div><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;}
+for(const [n,img,t] of V){for(const S of ['D','E','F','G1','G2','G3']) h+=`<div class="t ${S}" id="${S}${n}"><div class="img" style="background-image:url(${img})"></div><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;}
+for(const v of ['n1','n2','n3'])for(const [n,img,t] of V){h+=`<div class="t H" id="H${v}${n}"><div class="img" style="background-image:url(l${n}_${v}.jpg)"></div><div class="k">FXMM Education</div><div class="n">${n}</div><h1>${t}</h1><img class="lg" src="logoD.png"></div>`;}
 document.body.innerHTML=h;
 </script></body></html>
